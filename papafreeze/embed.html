@@ -1,0 +1,70 @@
+     <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Edition
+    </title>
+    <style>
+        /* Style the body and html to ensure full height */
+        html, body {
+            margin: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        /* Overlay styling */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .overlay video {
+            width: 100vw; /* Fill the viewport width */
+            height: 100vh; /* Fill the viewport height */
+            object-fit: cover; /* Ensure the video covers the area */
+        }
+        
+        /* Content styling */
+        .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            display: none; /* Hide content initially */
+        }
+    </style>
+</head>
+<body>
+    <!-- Overlay with loading video -->
+    <div id="overlay" class="overlay">
+        <video src="https://small.fileditchstuff.me/s16/pivnQFKNVmQwyERnQus.mov" autoplay loop muted></video>
+    </div>
+
+    <!-- Main content to be displayed after the overlay -->
+    <div id="content" class="content">
+        <iframe src="https://cookieegames.github.io/games/papafreeze/index.html" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <script>
+        // Function to hide the overlay and show the content
+        function showContent() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        }
+
+        // Delay hiding the overlay by 3 seconds
+        setTimeout(showContent, 3300);
+    </script>
+</body>
+</html>
