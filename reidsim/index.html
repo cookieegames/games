@@ -1,52 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Short Reid Lash Simulator Game</title>
-  <style>
-    /* CSS styles here */
-  </style>
-</head>
-<body>
-  <!-- Add a password input field -->
-  <input type="password" id="password-input">
-  
-  <!-- Add a button to submit the password -->
-  <button id="submit-button">Submit</button>
-
-  <!-- Add a container for the game content -->
-  <div id="game-container" style="display: none;">
-    <!-- Game HTML code here -->
-  </div>
-
-<script>
-// Get the password input and submit button elements
-const passwordInput = document.getElementById('password-input');
-const submitButton = document.getElementById('submit-button');
-
-// Add an event listener to the submit button
-submitButton.addEventListener('click', () => {
-  // Check if the entered password is correct
-  if (passwordInput.value === 'hawktuah') {
-    // Show the game container and hide the password input and submit button
-    document.getElementById('game-container').style.display = 'block';
-    passwordInput.style.display = 'none';
-    submitButton.style.display = 'none';
-    
-    // Game JavaScript code here
-    
-    let clickCount = 0;
-    let autoClickerInterval = null;
-    let clicksPerSecond = 0;
-    
-    // Rest of your game code...
-    
-  } else {
-    alert('Incorrect password. Please try again.');
-  }
-});
-</script>
-
-</body>
+<html>
+    <head>
+        <script defer src="/main.js"></script>
+    </head>
 </html>
