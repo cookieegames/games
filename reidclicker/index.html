@@ -1,1 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Clicker Remake</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+</head>
+<body>
+    <script>
+        // Image sources
+        let cookieImagePath = "https://small.fileditchstuff.me/s16/UYGOFsNyWycukXnNwWzi.jpeg"; // Cookie image URL
+        let autoClickerImagePath = "autoClicker.png"; // Path to auto clicker image
+        let grandmaImagePath = "grandma.png"; // Path to grandma image
+        let factoryImagePath = "factory.png"; // Path to factory image
+        let mineImagePath = "mine.png"; // Path to mine image
+        let labImagePath = "lab.png"; // Path to lab image
+        let portalImagePath = "portal.png"; // Path to portal image
 
+        // Misc variables
+        let cookies = 0;
+        let CPS = 0; // Cookies per second
+        let cookieImage, autoClickerImage, grandmaImage, factoryImage, mineImage, labImage, portalImage;
+
+        // Item costs and ownership
+        let autoClickerCost = 15, autoClickerOwned = 0;
+        let grandmaCost = 200, grandmaOwned = 0;
+        let factoryCost = 1000, factoryOwned = 0;
+        let mineCost = 2000, mineOwned = 0;
+        let labCost = 50000, labOwned = 0;
+        let portalCost = 100000, portalOwned = 0;
+
+        // Cookie position and size
+        let cookieX = 583, cookieY = 100, cookieW = 200, cookieH = 200;
+
+        function setup() {
+            createCanvas(windowWidth, windowHeight);
+            cookieImage = loadImage(cookieImagePath);
+            autoClickerImage = loadImage(autoClickerImagePath);
+            grandmaImage = loadImage(grandmaImagePath);
+            factoryImage = loadImage(factoryImagePath);
+            mineImage = loadImage(mineImagePath);
+            labImage = loadImage(labImagePath);
+            portalImage = loadImage(portalImagePath);
+        }
+
+        function draw() {
+            background(255);
+            drawCookie();
+            drawInterface();
+            updateCookies();
+        }
+
+        function drawCookie() {
+            noStroke();
+            image(cookieImage, cookieX, cookieY, cookieW, cookieH);
+        }
+
+        function drawInterface() {
+            textSize(20);
+            fill(0);
+            text("Cookies: " + nf(cookies, 0, 2), 20, 30);
+            text("CPS: " + nf(CPS, 0, 2), 20, 46);
+            drawUpgrades();
+        }
+
+        function drawUpgrades() {
+            const items = [
+                { name: "Auto Clicker", cps: 1, cost: autoClickerCost, owned: autoClickerOwned, y: 50 },
+                { name: "Grandma", cps: 5, cost: grandmaCost, owned: grandmaOwned, y: 130 },
+                { name: "Factory", cps: 10, cost: factoryCost, owned: factoryOwned, y: 210 },
+                { name: "Mine", cps: 25, cost: mineCost, owned: mineOwned, y: 290 },
+                { name: "Cookie Lab", cps: 50, cost: labCost, owned: labOwned, y: 370 },
+                { name: "Portal", cps: 100, cost: portalCost, owned: portalOwned, y: 450 }
+            ];
+
+            for (let item of items) {
+                fill(cookies < item.cost ? 'lightgray' : 'white');
+                rect(20, item.y, 250, 75);
+                fill(0);
+                textSize(14);
+                text(`Buy ${item.name}. (${item.cps} CPS)`, 25, item.y + 15);
+                text(`Price: C ${nf(item.cost, 0, 2)}`, 25, item.y + 33);
+                text(`${item.name}s Owned: ${item.owned}`, 25, item.y + 50);
+            }
+        }
+
+        function updateCookies() {
+            CPS = autoClickerOwned * 1 + grandmaOwned * 5 + factoryOwned * 10 + mineOwned * 25 + labOwned * 50 + portalOwned * 100;
+            cookies += CPS / 60; // Update cookies based on CPS
+        }
+
+        function mouseClicked() {
+            // Check if cookie is clicked
+            if (mouseX > cookieX && mouseX < cookieX + cookieW && mouseY > cookieY && mouseY < cookieY + cookieH) {
+                cookies++;
+            }
+
+            // Purchase items
+            const items = [
+                { cost: autoClickerCost, owned: autoClickerOwned, update: () => autoClickerOwned++ },
+                { cost: grandmaCost, owned: grandmaOwned, update: () => grandmaOwned++ },
+                { cost: factoryCost, owned: factoryOwned, update: () => factoryOwned++ },
+                { cost: mineCost, owned: mineOwned, update: () => mineOwned++ },
+                { cost: labCost, owned: labOwned, update: () => labOwned++ },
+                { cost: portalCost, owned: portalOwned, update: () => portalOwned++ }
+            ];
+
+            for (let i = 0; i < items.length; i++) {
+                const item = items[i];
+                if (mouseY > 50 + i * 80 && mouseY < 50 + i * 80 + 75 && cookies >= item.cost) {
+                    cookies -= item.cost;
+                    item.update();
+                    item.cost *= 1.07; // Increase cost for next purchase
+                }
+            }
+        }
+    </script>
+</body>
+</html>
