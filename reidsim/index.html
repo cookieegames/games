@@ -1,53 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Short Reid Lash Simulator Game</title>
-    <style>
-        /* Your existing CSS styles here */
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Short Reid Lash Simulator Game</title>
+  <style>
+    /* CSS styles here */
+  </style>
 </head>
 <body>
-    <div id="password-container" class="container">
-        <div class="info">
-            <div class="info-title">Enter Password to Play:</div>
-            <input type="password" id="password-input" />
-            <button id="password-submit">Submit</button>
-        </div>
-    </div>
+  <!-- Add a password input field -->
+  <input type="password" id="password-input">
+  
+  <!-- Add a button to submit the password -->
+  <button id="submit-button">Submit</button>
 
-    <div id="game-container" style="display: none;">
-        <!-- Your existing game code here -->
-    </div>
+  <!-- Add a container for the game content -->
+  <div id="game-container" style="display: none;">
+    <!-- Game HTML code here -->
+  </div>
 
-    <script>
-        const passwordContainer = document.getElementById('password-container');
-        const passwordInput = document.getElementById('password-input');
-        const passwordSubmitButton = document.getElementById('password-submit');
-        const gameContainer = document.getElementById('game-container');
+<script>
+// Get the password input and submit button elements
+const passwordInput = document.getElementById('password-input');
+const submitButton = document.getElementById('submit-button');
 
-        // Function to check if the entered password is correct
-        function checkPassword() {
-            const enteredPassword = passwordInput.value.trim();
-            if (enteredPassword === 'hawktuah') {
-                // Show the game container and hide the password container
-                gameContainer.style.display = 'block';
-                passwordContainer.style.display = 'none';
-            } else {
-                alert('Incorrect Password! Please try again.');
-            }
-        }
+// Add an event listener to the submit button
+submitButton.addEventListener('click', () => {
+  // Check if the entered password is correct
+  if (passwordInput.value === 'hawktuah') {
+    // Show the game container and hide the password input and submit button
+    document.getElementById('game-container').style.display = 'block';
+    passwordInput.style.display = 'none';
+    submitButton.style.display = 'none';
+    
+    // Game JavaScript code here
+    
+    let clickCount = 0;
+    let autoClickerInterval = null;
+    let clicksPerSecond = 0;
+    
+    // Rest of your game code...
+    
+  } else {
+    alert('Incorrect password. Please try again.');
+  }
+});
+</script>
 
-        // Event listener for submit button click
-        passwordSubmitButton.addEventListener('click', checkPassword);
-
-        // Optional: Allow pressing Enter key to submit the password
-        passwordInput.addEventListener('keyup', (event) => {
-            if (event.key === 'Enter') {
-                checkPassword();
-            }
-        });
-    </script>
 </body>
 </html>
