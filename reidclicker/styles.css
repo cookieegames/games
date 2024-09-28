@@ -1,0 +1,14 @@
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+}
+
+#game {
+    margin-top: 50px;
+}
+
+#cookie {
+    width: 200px; /* Adjust size as needed */
+    cursor: pointer;
+}
