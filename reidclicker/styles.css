@@ -1,14 +1,30 @@
 body {
     text-align: center;
     font-family: 'Arial', sans-serif;
-    background-image: url('your-background-image-url.jpg');
+    background-image: url('https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77701098349.jpg');
     background-size: cover;
     color: #fff;
+    margin: 0;
 }
 
 #game {
-    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
     padding: 20px;
+    border-radius: 10px;
+}
+
+#leftPanel {
+    width: 30%;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+}
+
+#rightPanel {
+    width: 65%;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
@@ -30,14 +46,21 @@ body {
 }
 
 .upgrade {
+    display: flex;
+    align-items: center;
     margin: 10px;
     padding: 10px;
-    border: 1px solid #ccc;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(255, 255, 255, 0.9);
     color: #333;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.upgrade img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
 }
 
 .upgrade:hover {
@@ -45,14 +68,7 @@ body {
     box-shadow: 0 0 20px rgba(255, 200, 0, 0.5);
 }
 
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-10px);
-    }
-    60% {
-        transform: translateY(-5px);
-    }
+.upgrade.greyed {
+    opacity: 0.5;
+    pointer-events: none;
 }
