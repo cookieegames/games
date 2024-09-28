@@ -1,11 +1,21 @@
 body {
     text-align: center;
     font-family: 'Arial', sans-serif;
-    background-color: #f8f8f8;
+    background-image: url('your-background-image-url.jpg');
+    background-size: cover;
+    color: #fff;
 }
 
 #game {
     margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+#cookieContainer {
+    display: inline-block;
+    position: relative;
 }
 
 #cookie {
@@ -16,22 +26,33 @@ body {
 
 #cookie:hover {
     transform: scale(1.1);
-}
-
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin-top: 10px;
+    box-shadow: 0 0 15px #ffcc00;
 }
 
 .upgrade {
     margin: 10px;
     padding: 10px;
     border: 1px solid #ccc;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #333;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
 }
 
 .upgrade:hover {
-    background-color: #e0e0e0;
+    background-color: #ffe600;
+    box-shadow: 0 0 20px rgba(255, 200, 0, 0.5);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
 }
