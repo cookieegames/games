@@ -8,13 +8,20 @@
 </head>
 <body>
     <div id="game">
-        <h1>Reid Clicker</h1>
-        <div id="cookieContainer">
-            <img id="cookie" src="https://small.fileditchstuff.me/s16/UYGOFsNyWycukXnNwWzi.jpeg" alt="Cookie">
+        <div id="leftPanel">
+            <h1>Reid Clicker</h1>
+            <p>Cookies: <span id="cookieCount">0</span></p>
+            <p>Clicks per Second: <span id="cookiesPerSecond">1</span></p>
+            <p>Upgrades Purchased:</p>
+            <ul id="upgradesPurchased"></ul>
         </div>
-        <p>Cookies: <span id="cookieCount">0</span></p>
-        <h2>Upgrades</h2>
-        <div id="upgrades"></div>
+        <div id="rightPanel">
+            <div id="cookieContainer">
+                <img id="cookie" src="https://small.fileditchstuff.me/s16/UYGOFsNyWycukXnNwWzi.jpeg" alt="Cookie">
+            </div>
+            <h2>Upgrades</h2>
+            <div id="upgrades"></div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
