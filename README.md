@@ -1,3 +1,3 @@
 Github Page for more complex games.
 
-All for sites.google.com/view/classroom-calender/
+All for https://sites.google.com/view/classroom-calender/
