@@ -1,0 +1,126 @@
+<html lang="en-us"><head><script src="https://s0.2mdn.net/instream/video/client.js" async="" type="text/javascript"></script><script type="text/javascript" async="" src="https://cdn.jsdelivr.net/npm/prebid.js@8.51.0/dist/debugging-standalone.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Games</title>
+    <link rel="shortcut icon" href="https://html5.gamedistribution.com/rvvASMiM/d99ae6e8df8e419fba8dc1217e60ff0e/TemplateData/favicon.ico">
+    <link rel="stylesheet" href="https://html5.gamedistribution.com/rvvASMiM/d99ae6e8df8e419fba8dc1217e60ff0e/TemplateData/style.css">
+    <script src="https://pagead2.googlesyndication.com/pagead/managed/js/adsense/m202410070101/slotcar_library_fy2021.js"></script><script async="" type="text/javascript" src="https://hb.improvedigital.com/pbw/prebid/prebid-idhb-v8.51a.min.js"></script><script src="https://pagead2.googlesyndication.com/pagead/managed/js/adsense/m202410070101/show_ads_impl_fy2021.js"></script><script id="gamedistribution-jssdk" src="https://html5.api.gamedistribution.com/main.min.js"></script><script src="https://html5.gamedistribution.com/rvvASMiM/d99ae6e8df8e419fba8dc1217e60ff0e/TemplateData/UnityProgress.js"></script>  
+    <script src="https://html5.gamedistribution.com/rvvASMiM/d99ae6e8df8e419fba8dc1217e60ff0e/Build/UnityLoader.js"></script>
+    <script>
+	
+	function InitApi(_appId) 
+    {
+		gameKey = _appId;
+		userId = "";
+	
+		window["GD_OPTIONS"] = {
+			"debug": false, // Enable debugging console. This will set a value in local storage as well, remove this value if you don't want debugging at all. You can also call it by running gdsdk.openConsole() within your browser console.
+			"gameId": gameKey, // Your gameId which is unique for each one of your games; can be found at your Gamedistribution.com account.
+			"userId": userId, // Your userId which can be found at your Gamedistribution.com account.
+			"onEvent": function(event) {
+				switch (event.name) {
+					case "SDK_GAME_START":
+						gameInstance.SendMessage('GameDistribution', 'ResumeGame');
+						break;
+					case "SDK_GAME_PAUSE":
+						gameInstance.SendMessage('GameDistribution', 'PauseGame');
+						break;
+					case "SDK_ERROR":					
+						break;
+				}
+			},
+		};
+		
+		(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s);
+			js.id = id;
+			js.src = '//html5.api.gamedistribution.com/main.min.js';
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'gamedistribution-jssdk'));
+    }
+    
+    function ExternEval() 
+    {
+        console.log('ExternEval');
+		
+		//gameInstance.SendMessage('GameDistribution', 'AdMessage', 'CallAd');
+       
+		 if (typeof gdsdk !== "undefined")
+		  {	  
+			gdsdk.showBanner(); 
+		  }
+    }
+	
+	function PreloadRewarded() 
+    {
+        console.log('PreloadRewarded');
+		
+		//gameInstance.SendMessage('GameDistribution', 'AdMessage', 'CallAd');
+       
+		if (typeof gdsdk !== "undefined")
+		{	  
+			if (gdsdk !== 'undefined' && gdsdk.preloadAd !== 'undefined') {
+			  gdsdk
+				.preloadAd('rewarded')
+				.then(response => {
+				  // A rewarded ad can be shown to user when he/she clicked it.
+				  gameInstance.SendMessage('GameDistribution', 'RewardedReady');
+				})
+				.error(error => {
+				  // Any Rewarded ad is not available to user.
+				  gameInstance.SendMessage('GameDistribution', 'RewardedError');
+				});
+			}
+
+		}
+    }
+	
+	function ShowRewarded() 
+    {
+        console.log('ShowRewarded');
+		
+		//gameInstance.SendMessage('GameDistribution', 'AdMessage', 'CallAd');
+       
+		 if (gdsdk !== 'undefined' && gdsdk.showAd !== 'undefined') 
+		 {
+			gdsdk.showAd('rewarded');
+		  }
+    }
+	
+	InitApi("d99ae6e8df8e419fba8dc1217e60ff0e");
+	
+      var gameInstance = UnityLoader.instantiate("gameContainer", "Build/game.json", {onProgress: UnityProgress});
+	  
+	    function FitScreen(){
+       var w=960;
+       var h=540;
+       var availWidth = window.innerWidth;
+       var availHeight = window.innerHeight - 10;
+	   
+       var canvas = document.getElementById("#canvas");
+       if(availWidth/availHeight>w/h){
+         height = availHeight;
+         width = (height*w/h);
+      }else{
+         width = availWidth;
+         height = width*h/w;
+      }
+	  
+      canvas.width = width;
+      canvas.height = height;
+	  
+       document.getElementById("gameContainer").style.width=width + "px";
+       document.getElementById("gameContainer").style.height=height + "px";
+	   
+    }
+
+    </script>
+  <script type="text/javascript" async="" src="https://pm.azerioncircle.com/p/locus/" id="locus"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-PLRTBHGSEL&amp;l=gdSDKDataLayer" id="gdsdk_google_analytics"></script><script type="text/javascript" async="" crossorigin="anonymous" data-ad-client="ca-pub-2316275586951220" data-ad-frequency-hint="30s" allow="autoplay" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js" id="afg" data-checked-head="true"></script><meta http-equiv="origin-trial" content="AlK2UR5SkAlj8jjdEc9p3F3xuFYlF6LYjAML3EOqw1g26eCwWPjdmecULvBH5MVPoqKYrOfPhYVL71xAXI1IBQoAAAB8eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3NTgwNjcxOTksImlzU3ViZG9tYWluIjp0cnVlfQ=="><meta http-equiv="origin-trial" content="Amm8/NmvvQfhwCib6I7ZsmUxiSCfOxWxHayJwyU1r3gRIItzr7bNQid6O8ZYaE1GSQTa69WwhPC9flq/oYkRBwsAAACCeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3NTgwNjcxOTksImlzU3ViZG9tYWluIjp0cnVlfQ=="><meta http-equiv="origin-trial" content="A9wSqI5i0iwGdf6L1CERNdmsTPgVu44ewj8QxTBYgsv1LCPUVF7YmWOvTappqB1139jAymxUW/RO8zmMqo4zlAAAAACNeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiRmxlZGdlQmlkZGluZ0FuZEF1Y3Rpb25TZXJ2ZXIiLCJleHBpcnkiOjE3MzY4MTI4MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A+d7vJfYtay4OUbdtRPZA3y7bKQLsxaMEPmxgfhBGqKXNrdkCQeJlUwqa6EBbSfjwFtJWTrWIioXeMW+y8bWAgQAAACTeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiRmxlZGdlQmlkZGluZ0FuZEF1Y3Rpb25TZXJ2ZXIiLCJleHBpcnkiOjE3MzY4MTI4MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><script type="text/javascript" async="" src="https://hb.improvedigital.com/pbw/headerlift.min.js?referer=gameflare.com" id="gdsdk_prebid"></script><script type="text/javascript" async="" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js" id="soecket.io.js"></script><script type="text/javascript" async="" src="https://imasdk.googleapis.com/js/sdkloader/ima3.js" id="gdsdk_ima"></script><meta http-equiv="origin-trial" content="A9AxgGSwmnfgzzkyJHILUr3H8nJ/3D+57oAsL4DBt4USlng4jZ0weq+fZtHC/Qwwn6gd4QSa5DzT3OBif+kXVA0AAAB4eyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="AlK2UR5SkAlj8jjdEc9p3F3xuFYlF6LYjAML3EOqw1g26eCwWPjdmecULvBH5MVPoqKYrOfPhYVL71xAXI1IBQoAAAB8eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3NTgwNjcxOTksImlzU3ViZG9tYWluIjp0cnVlfQ=="></head>
+  <body onfocus="FitScreen();" onload="FitScreen();" onresize="FitScreen();" aria-hidden="false">
+    <div class="webgl-content">
+      <div id="gameContainer" style="width: 811px; height: 456.188px; padding: 0px; margin: 0px; border: 0px; position: relative; background: rgb(35, 31, 32);"><canvas id="#canvas" width="811" height="456" style="cursor: default;"></canvas><div class="logo Dark" style="display: none;"></div><div class="progress Dark" style="display: none;"><div class="empty" style="width: 0%;"></div><div class="full" style="width: 100%;"></div></div></div>
+    </div>
+  
+<script src="blob:https://html5.gamedistribution.com/46e87fa1-7e3d-4acf-ac98-7890225b6bed"></script></body><iframe id="google_esf" name="google_esf" src="https://googleads.g.doubleclick.net/pagead/html/r20241007/r20190131/zrt_lookup_fy2021.html" style="display: none;"></iframe></html>
