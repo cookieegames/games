@@ -4,7 +4,7 @@
     border-radius: 0.5vw;
     overflow: hidden;
     box-shadow: 0 0.208vw 0.417vw rgba(0, 0, 0, 0.1);
-    border: 0.104vw solid #f0d210;
+    border: 0.104vw solid #846a51;
     margin-top: 3.906vw;
     margin-left: 7.292vw;
 }
@@ -77,7 +77,7 @@ background-color: #202020;
 border-radius: 0.5vw;
 position: relative;
 box-shadow: 0 0.313vw 0.625vw 0 rgba(30, 30, 30);
-outline: 0.1vw solid #f0d210;
+outline: 0.1vw solid #846a51;
 display: flex;
 justify-content: center; /* Center horizontally */
 align-items: center; /* Center vertically */
@@ -107,7 +107,7 @@ width: 62.5vw; /* Adjust width as needed */
 background-color: #202020;
 border-radius: 0.5vw;
 box-shadow: 0 0.313vw 0.625vw 0 rgba(30, 30, 30, 0.5);
-outline: 0.1vw solid #f0d210;
+outline: 0.1vw solid #846a51;
 padding: 1.042vw; /* Padding inside the container */
 margin-left: 15.625vw;
 margin-top: 5.208vw;
