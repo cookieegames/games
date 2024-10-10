@@ -18,7 +18,7 @@
   window.addEventListener('DOMContentLoaded', () => {
     const script = document.createElement('script');
     script.defer = true;
-    script.setAttribute('data-domain', 'thepizzaedition.github.io');
+    script.setAttribute('data-domain', 'cookieegames.github.io');
     script.src = 'https://plausible.io/js/script.js';
     document.body.appendChild(script);
 });
