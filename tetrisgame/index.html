@@ -1,5 +1,5 @@
-<html lang="en"><head>
-    
+<html lang="en">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -10,7 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/games/tetrisgame/css/style.css">
     <link rel="stylesheet" href="/games/tetrisgame/css/gampage.css">
-    <script src="games/tetrisgame/analytics.js"></script><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8FZJSQZCW3"></script>
+    <script src="games/tetrisgame/analytics.js"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8FZJSQZCW3"></script>
 </head>
 <body style="background-color:black;">
     
@@ -19,18 +20,15 @@
         <div class="bottom-div">
             <img src="https://glibrary.gopon.xyz/flashtetris/splash.png" alt="Website Logo">
             <div class="text-container">
-               
                 <div class="buttons-container">
-                <img id="refresh-btn" src="/games/images/refresh.png" alt="Refresh">
-                <img id="fullscreen-btn" src="/games/images/fullscreen2.png" alt="Fullscreen">
+                    <img id="refresh-btn" src="/games/images/refresh.png" alt="Refresh" style="cursor:pointer;">
+                    <img id="fullscreen-btn" src="/games/images/fullscreen2.png" alt="Fullscreen" style="cursor:pointer;">
                 </div>
-                
                 <div class="website-name">Tetris</div>
                 <div class="developer-name">Paul Neave</div>
             </div>
         </div>
     </div>
-
 
     <div class="ad">
         <div class="adTXT">Advertisement</div>
@@ -38,148 +36,57 @@
             <script src="/afg.js"></script>
         </div>
     </div>
-</div>
 
-</div>
-
-    </div>
-    
-    
     <div class="desc">
         <h2 class="desc-title">Description</h2>
         <p>Tetris Flash Version</p>
         <h2 class="desc-title">Creator</h2>
         <p>Paul Neave</p>
         <h2 class="desc-title">Keybinds</h2>
-        <p>W,A,S,D, Arrow keys</p>
+        <p>W, A, S, D, Arrow keys</p>
         <h2 class="desc-title">Devices</h2>
-        <p>Desktop, </p>
+        <p>Desktop</p>
         <h2 class="desc-title">Languages</h2>
         <p>English</p>
-
-
-        
-        
     </div>
-    
 
+    <!-- Fullscreen and Refresh JavaScript -->
+    <script>
+        // Refresh Button Functionality
+        document.getElementById('refresh-btn').onclick = function() {
+            var iframe = document.getElementById('embed-frame');
+            iframe.src = iframe.src; // Reload the iframe
+        };
 
+        // Fullscreen Button Functionality
+        document.getElementById('fullscreen-btn').onclick = function() {
+            var iframe = document.getElementById('embed-frame');
+            var win;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--strtscrollup -->
-<style>
-#scrollToTopContainer {
-    display: none;
-    position: fixed;
-    bottom: 1.042vw;
-    right: 1.042vw;
-    z-index: 99;
-}
-
-#scrollToTop {
-    background-color: #303030;
-    padding: 0.521vw;
-    border-radius: 1.042vw;
-    cursor: pointer;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-    border: 0.104vw solid #303030; 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#scrollToTop:hover {
-    background-color: #222222;
-    border-color: #846a51; 
-}
-
-#scrollToTop img {
-    width: 2.292vw; 
-    height: auto;
-    transition: transform 0.3s ease;
-}
-
-#scrollToTop:hover img {
-    transform: translateY(-0.26vw); 
-}
-</style>
-
-
-<div id="scrollToTopContainer" style="display: none;">
-    <div id="scrollToTop">
-        <img src="/games/images/uparrw.png" alt="Scroll to Top">
-    </div>
-</div>
-
-<script>
-    window.onscroll = function() {scrollFunction()};
-
-    function scrollFunction() {
-        var scrollToTopContainer = document.getElementById("scrollToTopContainer");
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            scrollToTopContainer.style.display = "block";
-        } else {
-            scrollToTopContainer.style.display = "none";
-        }
-    }
-
-    document.getElementById("scrollToTop").addEventListener("click", function() {
-        scrollToTop();
-    });
-
-    function scrollToTop() {
-        var scrollStep = -window.scrollY / (350 / 15);
-        var scrollInterval = setInterval(function() {
-            if (window.scrollY != 0) {
-                window.scrollBy(0, scrollStep);
+            if (win) {
+                win.focus();
             } else {
-                clearInterval(scrollInterval);
+                win = window.open();
+                win.document.body.style.margin = '0';
+                win.document.body.style.height = '100vh';
+                
+                var fullIframe = win.document.createElement('iframe');
+                fullIframe.style.border = 'none';
+                fullIframe.style.width = '100%';
+                fullIframe.style.height = '100%';
+                fullIframe.src = iframe.src; // Use the same source as the main iframe
+
+                win.document.body.appendChild(fullIframe);
+
+                var interval = setInterval(function() {
+                    if (win.closed) {
+                        clearInterval(interval);
+                        win = undefined;
+                    }
+                }, 500);
             }
-        }, 15);
-    }
-</script>
+        };
+    </script>
 
-
-
-  
-
-<span id="fps" style="display: none;">30.2</span>
-<script src="/jsload/fpsCheck.js"></script>
-</body></html>
+</body>
+</html>
