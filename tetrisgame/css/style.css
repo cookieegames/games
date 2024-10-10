@@ -1,0 +1,208 @@
+body {
+  font-family: 'Bebas Neue', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(34, 34, 34);/
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(34, 34, 34, 0.7); 
+  backdrop-filter: blur(6px); 
+  padding: 0.52vw;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 7%;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+  
+  .navbar-left {
+    display: flex;
+    align-items: center;
+    margin-left: 2.6vw;
+    }
+  
+  .navbar-left img {
+  max-width: 100%;
+  height: auto;
+  max-height: 3.125vw;
+  width: auto;
+  margin-top: 0.52vw;
+  }
+  
+  .navbar-left a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.75vw;
+  margin-left: 0.78vw;
+  opacity: 1; 
+  }
+  
+  .navbar-right {
+  display: flex;
+  align-items: center;
+  margin-right: 2.6vw;
+  }
+  
+  .navbar-right a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.375vw;
+  opacity: 1; 
+  margin-left: 1.04vw;
+  transition: color 0.3s ease;
+  }
+  .navbar-right a:hover {
+      color: #f0d210; 
+  }
+  
+  .navbar-right .navbar-img-link img {
+  max-height: 1.565vw;
+  width: auto;
+  margin-left: 0vw;
+  margin-top: 0.21vw;
+  margin-right: -1.5vw;
+  }
+  
+  .navbar-right .navbar-img-link img:hover {
+    transform: rotate(360deg);
+    transition: transform 0.7s ease; /* Add transition for smooth rotation */
+    }
+  
+  @media (max-width: 31.25vw) {
+  .navbar-left a, .navbar-right a {
+  font-size: 1vw;
+  }
+  .navbar-left img,
+  .navbar-right .navbar-img-link img {
+  max-height: 3.645vw;
+  }
+  }
+#particles-js {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+
+::selection {
+  background: #f0d210; 
+  color: white;
+}
+
+
+
+
+/* For Webkit-based browsers (e.g., Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 0.625vw;
+}
+
+::-webkit-scrollbar-track {
+  background: #343434; 
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 0.313vw; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+
+/* For Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #343434;
+} 
+
+.navbar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+background-color: rgba(34, 34, 34, 0.7);
+padding: 0.52vw;
+position: fixed;
+top: 0;
+width: 100%;
+height: 7%;
+box-sizing: border-box;
+z-index: 1000;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.042vw;
+  background-color: rgba(36, 36, 36, 0.7);
+  color: #fff;
+  border-top: 0.26vw solid #f0d210;
+  margin-top: 5.208vw; 
+}
+
+.footer .left,
+.footer .middle,
+.footer .right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-right: 5.208vw;
+}
+
+.footer .middle {
+  flex-grow: 1;
+  align-items: center;
+}
+
+.footer .right {
+  align-items: center;
+}
+
+.footer a {
+  margin: 0.156vw 0;
+  text-decoration: none;
+  color: #fff;
+}
+
+.footer .logo-title {
+  display: flex;
+  align-items: center;  
+}
+
+.footer .logo {
+  margin-right: 0.521vw;
+  margin-top: 5%;
+}
+
+.footer .logo img {
+  width: 3.646vw;
+  height: 3.646vw;
+}
+
+.footer .title {
+  font-size: 1.667vw;
+  margin: 0;
+  margin-top: 5%;
+}
+
+#fps {
+  position: fixed;
+  top: 0.781vw;
+  left: 0.521vw;
+  background-color: rgba(34, 34, 34, 0.7);
+  color: #f0d210;
+  padding: 0.26vw 0.521vw;
+  border-radius: 0.26vw;
+  font-size: 0.833vw;
+  font-family: 'Bebas Neue', sans-serif;
+  display: none; /* Initially hidden */
+  z-index: 10000; /* Ensure it's on top of other elements */
+  outline: 0.104vw solid #f0d210; /* Add an outline */
+}
