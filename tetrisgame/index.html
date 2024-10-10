@@ -22,11 +22,34 @@
             padding: 10px;
         }
 
-        /* Align text content to the left */
+        /* Flex container for logo and text */
+        .logo-text-container {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Style for the logo image */
+        .logo-text-container img {
+            margin-right: 10px;
+            width: 50px;
+            height: 50px; /* Adjust the size of the logo if needed */
+        }
+
+        /* Align text content to the right of the logo */
         .text-container {
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .website-name {
+            font-size: 1.5rem; /* Adjust size as needed */
+            color: white;
+        }
+
+        .developer-name {
+            font-size: 1rem; /* Adjust size as needed */
+            color: gray;
         }
 
         /* Align buttons to the right */
@@ -54,10 +77,13 @@
     <div class="embed-container">
         <iframe id="embed-frame" src="https://cookieegames.github.io/games/tetris/index.html"></iframe>
         <div class="bottom-div">
-            <div class="text-container">
+            <!-- Logo and text container -->
+            <div class="logo-text-container">
                 <img src="https://glibrary.gopon.xyz/flashtetris/splash.png" alt="Website Logo">
-                <div class="website-name">Tetris</div>
-                <div class="developer-name">Paul Neave</div>
+                <div class="text-container">
+                    <div class="website-name">Tetris</div>
+                    <div class="developer-name">Paul Neave</div>
+                </div>
             </div>
 
             <!-- Buttons aligned to the right -->
