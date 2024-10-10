@@ -56,7 +56,7 @@ body {
   transition: color 0.3s ease;
   }
   .navbar-right a:hover {
-      color: #f0d210; 
+      color: #846a51; 
   }
   
   .navbar-right .navbar-img-link img {
@@ -92,7 +92,7 @@ body {
 
 
 ::selection {
-  background: #f0d210; 
+  background: #846a51; 
   color: white;
 }
 
@@ -143,7 +143,7 @@ z-index: 1000;
   padding: 1.042vw;
   background-color: rgba(36, 36, 36, 0.7);
   color: #fff;
-  border-top: 0.26vw solid #f0d210;
+  border-top: 0.26vw solid #846a51;
   margin-top: 5.208vw; 
 }
 
@@ -197,12 +197,12 @@ z-index: 1000;
   top: 0.781vw;
   left: 0.521vw;
   background-color: rgba(34, 34, 34, 0.7);
-  color: #f0d210;
+  color: #846a51;
   padding: 0.26vw 0.521vw;
   border-radius: 0.26vw;
   font-size: 0.833vw;
   font-family: 'Bebas Neue', sans-serif;
   display: none; /* Initially hidden */
   z-index: 10000; /* Ensure it's on top of other elements */
-  outline: 0.104vw solid #f0d210; /* Add an outline */
+  outline: 0.104vw solid #846a51; /* Add an outline */
 }
