@@ -12,20 +12,58 @@
     <link rel="stylesheet" href="/games/tetrisgame/css/gampage.css">
     <script src="games/tetrisgame/analytics.js"></script>
     <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-8FZJSQZCW3"></script>
+
+    <style>
+        /* Flex container for the bottom div */
+        .bottom-div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+        /* Align text content to the left */
+        .text-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        /* Align buttons to the right */
+        .buttons-container {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px; /* Space between buttons */
+        }
+
+        /* Styling for buttons */
+        .buttons-container img {
+            cursor: pointer;
+            width: 32px;
+            height: 32px;
+        }
+
+        /* Optional styling for hover */
+        .buttons-container img:hover {
+            opacity: 0.8;
+        }
+    </style>
 </head>
+
 <body style="background-color:black;">
-    
     <div class="embed-container">
         <iframe id="embed-frame" src="https://cookieegames.github.io/games/tetris/index.html"></iframe>
         <div class="bottom-div">
-            <img src="https://glibrary.gopon.xyz/flashtetris/splash.png" alt="Website Logo">
             <div class="text-container">
-                <div class="buttons-container">
-                    <img id="refresh-btn" src="/games/images/refresh.png" alt="Refresh" style="cursor:pointer;">
-                    <img id="fullscreen-btn" src="/games/images/fullscreen2.png" alt="Fullscreen" style="cursor:pointer;">
-                </div>
+                <img src="https://glibrary.gopon.xyz/flashtetris/splash.png" alt="Website Logo">
                 <div class="website-name">Tetris</div>
                 <div class="developer-name">Paul Neave</div>
+            </div>
+
+            <!-- Buttons aligned to the right -->
+            <div class="buttons-container">
+                <img id="refresh-btn" src="/games/images/refresh.png" alt="Refresh">
+                <img id="fullscreen-btn" src="/games/images/fullscreen2.png" alt="Fullscreen">
             </div>
         </div>
     </div>
