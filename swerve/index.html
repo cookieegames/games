@@ -1,0 +1,857 @@
+<html><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style>@media screen and (min-aspect-ratio: 1280/720) {    #application-canvas.fill-mode-KEEP_ASPECT {        width: auto;        height: 100%;        margin: 0 auto;    }}</style>
+    <title>SWERVE</title>
+    <script src="playcanvas-stable.min.js"></script>
+    <script>
+        SCENE_PATH = "430168.json";
+        CONTEXT_OPTIONS = {
+            'alpha': true,
+            'preserveDrawingBuffer': false
+        };
+        pc.script.legacy = false;
+    </script>
+<style type="text/css">body {
+    background-color: #283538;
+}
+#application-splash-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #283538;
+}
+#application-splash {
+    position: absolute;
+    top: calc(50% - 28px);
+    width: 264px;
+    left: calc(50% - 132px);
+}
+#application-splash img {
+    width: 100%;
+}
+#progress-bar-container {
+    margin: 20px auto 0 auto;
+    height: 2px;
+    width: 100%;
+    background-color: #1d292c;
+}
+#progress-bar {
+    width: 0%;
+    height: 100%;
+    background-color: #f60;
+}
+@media (max-width: 480px) {
+    #application-splash {
+        width: 170px;
+        left: calc(50% - 85px);
+    }
+}</style><script src="__game-scripts.js?t=d52767076daad1ae6f33454245de28e6"></script><style>#ui {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+}
+#ui.gameOver > .gameOver {
+  transform: scale(1, 1);
+  opacity: 1;
+  visibility: visible;
+}
+#ui.gameOver > .share {
+  bottom: 48px;
+  visibility: visible;
+}
+#ui.gameOver > .score {
+  left: -320px;
+  visibility: hidden;
+}
+#ui.gameOver > .speed {
+  left: -320px;
+  visibility: hidden;
+}
+#ui.gameOver > .button.restart {
+  bottom: 48px;
+  visibility: visible;
+}
+#ui.gameOver > .poweredBy {
+  display: block;
+}
+#ui > .powered {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background-color: #283538;
+  opacity: 1;
+  transition: opacity 200ms;
+}
+#ui > .powered.hidden {
+  opacity: 0;
+}
+#ui > .powered > .middle {
+  position: absolute;
+  top: calc(50% - 210px);
+  left: calc(50% - 120px);
+  width: 240px;
+}
+#ui > .powered > .middle > .logo {
+  display: block;
+  width: 240px;
+}
+#ui > .powered > .middle > .playcanvas {
+  display: block;
+  width: 240px;
+  margin-top: 32px;
+}
+#ui > .introduce {
+  pointer-events: none;
+  width: 228px;
+  height: 80px;
+  position: absolute;
+  top: calc(70% - 40px);
+  left: calc(50% - 114px);
+  opacity: 0;
+  visibility: visible;
+  transition: opacity 200ms, visibility 200ms;
+}
+#ui > .introduce.active {
+  opacity: 1;
+  visibility: visible;
+}
+#ui > .introduce > .shadow {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: 4px;
+  width: auto;
+  height: 80px;
+}
+#ui > .introduce > .shadow > .left {
+  position: absolute;
+  left: 0;
+  height: 0;
+  bottom: 0;
+  border-bottom: 4px solid rgba(50, 50, 50, 0.5);
+  border-left: 1px solid transparent;
+}
+#ui > .introduce > .shadow > .text {
+  position: absolute;
+  left: 1px;
+  right: 24px;
+  bottom: 0;
+  width: auto;
+  height: 4px;
+  background-color: rgba(50, 50, 50, 0.5);
+}
+#ui > .introduce > .shadow > .right {
+  position: absolute;
+  right: 0;
+  height: 0;
+  border-top: 80px solid rgba(50, 50, 50, 0.5);
+  border-left: 4px solid rgba(50, 50, 50, 0.5);
+  border-right: 20px solid transparent;
+}
+#ui > .introduce > .left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  border-bottom: 80px solid #9BDF46;
+  border-left: 20px solid transparent;
+}
+#ui > .introduce > .text {
+  position: absolute;
+  top: 0;
+  left: 20px;
+  width: 180px;
+  padding: 12px 0;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+  line-height: 28px;
+  text-transform: uppercase;
+  color: #2A363B;
+  background-color: #9BDF46;
+}
+#ui > .introduce > .right {
+  position: absolute;
+  top: 0;
+  left: 200px;
+  height: 0;
+  border-top: 80px solid #9BDF46;
+  border-right: 20px solid transparent;
+}
+#ui > .mute {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  background-image: url("files/assets/4233255/1/mute-icons.png");
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+#ui > .mute.active {
+  background-position: -34px 0;
+}
+#ui > .score {
+  position: absolute;
+  top: 16px;
+  left: 0;
+  transition: left 200ms, visibility 200ms;
+}
+#ui > .score > .shadow {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: -4px;
+  height: 72px;
+}
+#ui > .score > .shadow > .text {
+  position: absolute;
+  left: -4px;
+  right: 22px;
+  bottom: 0;
+  width: auto;
+  height: 4px;
+  background-color: rgba(50, 50, 50, 0.5);
+}
+#ui > .score > .shadow > .right {
+  position: absolute;
+  right: 0;
+  height: 0;
+  border-left: 4px solid rgba(50, 50, 50, 0.5);
+  border-top: 72px solid rgba(50, 50, 50, 0.5);
+  border-right: 18px solid transparent;
+}
+#ui > .score > .left {
+  position: relative;
+  display: block;
+  min-width: 160px;
+  padding-left: 16px;
+  margin-right: 18px;
+  line-height: 72px;
+  background-color: #E84A5F;
+  font-size: 48px;
+  font-weight: bold;
+  font-style: italic;
+  color: #fff;
+}
+#ui > .score > .right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 0;
+  border-top: 72px solid #E84A5F;
+  border-right: 18px solid transparent;
+}
+#ui > .speed {
+  position: absolute;
+  top: 80px;
+  color: #2A363B;
+  font-weight: bold;
+  font-style: italic;
+  transition: left 200ms, visibility 200ms;
+}
+#ui > .speed > .shadow {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: -4px;
+  height: 32px;
+}
+#ui > .speed > .shadow > .text {
+  position: absolute;
+  left: -4px;
+  right: 12px;
+  bottom: 0;
+  width: auto;
+  height: 4px;
+  background-color: rgba(50, 50, 50, 0.5);
+}
+#ui > .speed > .shadow > .right {
+  position: absolute;
+  right: 0;
+  height: 0;
+  border-top: 32px solid rgba(50, 50, 50, 0.5);
+  border-left: 4px solid rgba(50, 50, 50, 0.5);
+  border-right: 8px solid transparent;
+}
+#ui > .speed > .left {
+  position: relative;
+  display: block;
+  padding: 0 16px 0 16px;
+  margin-right: 8px;
+  line-height: 32px;
+  background-color: #9BDF46;
+  font-size: 16px;
+}
+#ui > .speed > .right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 0;
+  border-top: 32px solid #9BDF46;
+  border-right: 8px solid transparent;
+}
+#ui > .poweredBy {
+  display: none;
+  position: absolute;
+  top: 16px;
+  left: calc(50% - 93px);
+}
+#ui > .gameOver {
+  position: absolute;
+  top: calc(50% - 76px);
+  left: calc(50% - 160px);
+  transform: scale(0, 0);
+  width: 320px;
+  height: 152px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 200ms, transform 200ms, visibility 200ms;
+}
+#ui > .gameOver > .title {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 102px);
+  width: 204px;
+  height: 48px;
+}
+#ui > .gameOver > .title > .shadow {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: -4px;
+  width: auto;
+  height: 48px;
+}
+#ui > .gameOver > .title > .shadow > .left {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 0;
+  border-bottom: 4px solid rgba(50, 50, 50, 0.5);
+  border-left: 1px solid transparent;
+}
+#ui > .gameOver > .title > .shadow > .text {
+  position: absolute;
+  bottom: 0;
+  left: 1px;
+  right: 16px;
+  width: auto;
+  height: 4px;
+  background-color: rgba(50, 50, 50, 0.5);
+}
+#ui > .gameOver > .title > .shadow > .right {
+  position: absolute;
+  right: 0;
+  height: 0;
+  border-top: 48px solid rgba(50, 50, 50, 0.5);
+  border-left: 4px solid rgba(50, 50, 50, 0.5);
+  border-right: 12px solid transparent;
+}
+#ui > .gameOver > .title > .left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  border-bottom: 48px solid #E9F679;
+  border-left: 12px solid transparent;
+  z-index: 1;
+}
+#ui > .gameOver > .title > .text {
+  position: absolute;
+  top: 0;
+  left: 12px;
+  right: 12px;
+  width: auto;
+  line-height: 48px;
+  background-color: #E9F679;
+  font-size: 32px;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+  color: #2A363B;
+  text-transform: uppercase;
+}
+#ui > .gameOver > .title > .right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 0;
+  border-top: 48px solid #E9F679;
+  border-right: 12px solid transparent;
+}
+#ui > .gameOver > .score {
+  position: absolute;
+  top: 36px;
+  left: calc(50% - 152px);
+  width: 304px;
+  height: 100px;
+}
+#ui > .gameOver > .score > .shadow {
+  position: absolute;
+  top: 4px;
+  bottom: 0;
+  left: 4px;
+  right: -4px;
+  width: auto;
+  height: auto;
+}
+#ui > .gameOver > .score > .shadow > .left {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 0;
+  border-bottom: 4px solid rgba(50, 50, 50, 0.5);
+  border-left: 1px solid transparent;
+}
+#ui > .gameOver > .score > .shadow > .text {
+  position: absolute;
+  bottom: 0;
+  left: 1px;
+  right: 28px;
+  width: auto;
+  height: 4px;
+  background-color: rgba(50, 50, 50, 0.5);
+}
+#ui > .gameOver > .score > .shadow > .right {
+  position: absolute;
+  right: 0;
+  height: 0;
+  border-top: 96px solid rgba(50, 50, 50, 0.5);
+  border-left: 4px solid rgba(50, 50, 50, 0.5);
+  border-right: 24px solid transparent;
+}
+#ui > .gameOver > .score > .left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  border-bottom: 96px solid #E84A5F;
+  border-left: 24px solid transparent;
+}
+#ui > .gameOver > .score > .text {
+  position: absolute;
+  top: 0;
+  left: 24px;
+  right: 24px;
+  width: auto;
+  line-height: 96px;
+  background-color: #E84A5F;
+  font-size: 48px;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+  color: #fff;
+  text-transform: uppercase;
+}
+#ui > .gameOver > .score > .right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 0;
+  border-top: 96px solid #E84A5F;
+  border-right: 24px solid transparent;
+}
+#ui > .gameOver > .speed {
+  position: absolute;
+  top: 120px;
+  left: calc(50% - 72px);
+  width: 144px;
+  height: 32px;
+}
+#ui > .gameOver > .speed > .shadow {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: -4px;
+  width: auto;
+  height: 32px;
+}
+#ui > .gameOver > .speed > .shadow > .left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 0;
+  border-bottom: 4px solid rgba(50, 50, 50, 0.5);
+  border-left: 1px solid transparent;
+}
+#ui > .gameOver > .speed > .shadow > .text {
+  position: absolute;
+  bottom: 0;
+  left: 1px;
+  right: 12px;
+  width: auto;
+  height: 4px;
+  background-color: rgba(50, 50, 50, 0.5);
+}
+#ui > .gameOver > .speed > .shadow > .right {
+  position: absolute;
+  right: 0;
+  height: 0;
+  border-top: 32px solid rgba(50, 50, 50, 0.5);
+  border-left: 4px solid rgba(50, 50, 50, 0.5);
+  border-right: 8px solid transparent;
+}
+#ui > .gameOver > .speed > .left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 0;
+  border-bottom: 32px solid #9BDF46;
+  border-left: 8px solid transparent;
+}
+#ui > .gameOver > .speed > .text {
+  position: absolute;
+  top: 0;
+  left: 8px;
+  width: 128px;
+  line-height: 32px;
+  color: #2A363B;
+  background-color: #9BDF46;
+  font-size: 16px;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+}
+#ui > .gameOver > .speed > .right {
+  position: absolute;
+  top: 0;
+  left: 136px;
+  height: 0;
+  border-top: 32px solid #9BDF46;
+  border-right: 8px solid transparent;
+}
+#ui > .share {
+  position: absolute;
+  /*         left: ~"calc(50% - 76px)"; */
+  left: calc(50% - 119px);
+  bottom: -48px;
+  height: 48px;
+  visibility: hidden;
+  transition: bottom 200ms, visibility 200ms;
+}
+#ui > .share > .twitter,
+#ui > .share > .facebook {
+  float: left;
+}
+#ui > .share > .twitter > .body > .middle,
+#ui > .share > .facebook > .body > .middle {
+  width: 48px;
+  background-image: url("files/assets/4283340/1/social-icons.png");
+  background-repeat: no-repeat;
+  background-size: 98px 98px;
+}
+#ui > .share > .twitter {
+  /*             margin-right: 8px; */
+}
+#ui > .share > .twitter:hover > .body > .middle {
+  background-position: 0 -50px;
+}
+#ui > .share > .facebook {
+  display: none;
+}
+#ui > .share > .facebook:hover > .body > .middle {
+  background-position: -50px -50px;
+}
+#ui > .share > .facebook > .body > .middle {
+  background-position: -50px 0;
+}
+#ui > .button.restart {
+  position: absolute;
+  bottom: -48px;
+  left: calc(50% - 43px);
+  width: 160px;
+  height: 48px;
+  visibility: hidden;
+  transition: bottom 200ms, visibility 200ms;
+}
+#ui > .button.restart > .body > .middle {
+  font-size: 24px;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+  line-height: 48px;
+  text-transform: uppercase;
+  width: 136px;
+}
+#ui .button {
+  position: relative;
+  height: 48px;
+  cursor: pointer;
+}
+#ui .button:hover > .body > .middle {
+  color: #fff;
+}
+#ui .button > .shadow {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  right: -4px;
+  width: auto;
+  height: 48px;
+}
+#ui .button > .shadow > .left {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 0;
+  border-bottom: 4px solid rgba(50, 50, 50, 0.5);
+  border-left: 1px solid transparent;
+}
+#ui .button > .shadow > .middle {
+  position: absolute;
+  bottom: 0;
+  left: 1px;
+  right: 16px;
+  width: auto;
+  height: 4px;
+  background-color: rgba(50, 50, 50, 0.5);
+}
+#ui .button > .shadow > .right {
+  position: absolute;
+  right: 0;
+  height: 0;
+  border-top: 48px solid rgba(50, 50, 50, 0.5);
+  border-left: 4px solid rgba(50, 50, 50, 0.5);
+  border-right: 12px solid transparent;
+}
+#ui .button > .body {
+  display: block;
+  position: relative;
+}
+#ui .button > .body > .left {
+  float: left;
+  height: 0;
+  border-bottom: 48px solid #9BDF46;
+  border-left: 12px solid transparent;
+}
+#ui .button > .body > .middle {
+  float: left;
+  height: 48px;
+  line-height: 48px;
+  color: #2A363B;
+  background-color: #9BDF46;
+  width: 136px;
+}
+#ui .button > .body > .right {
+  float: left;
+  height: 0;
+  border-top: 48px solid #9BDF46;
+  border-right: 12px solid transparent;
+}
+#ui > .path {
+  position: absolute;
+  left: calc(50% - 160px);
+  bottom: 16px;
+  width: 320px;
+  height: auto;
+  height: 10px;
+}
+#ui > .path > .checkpoints {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+#ui > .path > .checkpoints > .checkpoint {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #2A363B;
+  flex-shrink: 0;
+}
+#ui > .path > .checkpoints > .checkpoint.active {
+  background-color: #9BDF46;
+}
+#ui > .path > .line {
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  top: 4px;
+  bottom: 4px;
+  width: auto;
+  height: auto;
+  background-color: #2A363B;
+}
+#ui > .path > .line > .bar {
+  height: 2px;
+  width: 0%;
+  background-color: #9BDF46;
+}
+@media (max-width: 640px) {
+  #ui > .path {
+    left: 16px;
+    right: 16px;
+    width: auto;
+  }
+}
+@media (max-height: 480px) {
+  #ui > .powered > .middle {
+    top: calc(50% - 117px);
+  }
+  #ui > .powered > .middle > .logo {
+    width: 120px;
+    margin: 0 auto;
+  }
+  #ui > .powered > .middle > .playcanvas {
+    margin-top: 16px;
+  }
+  #ui > .poweredBy {
+    left: 16px;
+  }
+  #ui > .gameOver {
+    top: 16px;
+  }
+  #ui > .gameOver > .title {
+    left: calc(50% - 80px);
+    width: 160px;
+  }
+  #ui > .gameOver > .title > .left {
+    border-bottom-width: 48px;
+    border-left-width: 12px;
+  }
+  #ui > .gameOver > .title > .text {
+    line-height: 48px;
+    font-size: 24px;
+  }
+  #ui > .gameOver > .title > .right {
+    border-top-width: 48px;
+    border-right-width: 12px;
+  }
+  #ui > .gameOver > .score {
+    top: 40px;
+    width: 288px;
+    height: 68px;
+    left: calc(50% - 144px);
+  }
+  #ui > .gameOver > .score > .shadow > .text {
+    right: 20px;
+  }
+  #ui > .gameOver > .score > .shadow > .right {
+    border-top-width: 64px;
+    border-right-width: 16px;
+  }
+  #ui > .gameOver > .score > .left {
+    border-bottom-width: 64px;
+    border-left-width: 16px;
+  }
+  #ui > .gameOver > .score > .text {
+    line-height: 64px;
+    font-size: 32px;
+    left: 16px;
+    right: 16px;
+  }
+  #ui > .gameOver > .score > .right {
+    border-top-width: 64px;
+    border-right-width: 16px;
+  }
+  #ui > .gameOver > .speed {
+    top: 96px;
+  }
+}
+@media (min-height: 736px) {
+  #ui > .gameOver {
+    top: 20%;
+  }
+}
+</style></head>
+<body>
+    <script src="__start__.js"></script><canvas id="application-canvas" tabindex="0" width="330" height="634" style="" class="fill-mode-FILL_WINDOW"></canvas>
+    <script src="__loading__.js"></script>
+
+
+<div id="ui" class="gameOver">
+
+<div class="introduce" bind="introduce">
+    <span class="shadow"><span class="left"></span><span class="text"></span><span class="right"></span></span>
+    <span class="left"></span>
+    <span class="text">Tap Anywhere<br>To Turn</span>
+    <span class="right"></span>
+</div>
+
+<div class="score">
+    <span class="shadow"><span class="text"></span><span class="right"></span></span>
+    <span class="left" bind="score">0</span><span class="right"></span>
+</div>
+<div class="speed">
+    <span class="shadow"><span class="text"></span><span class="right"></span></span>
+    <span class="left"><span bind="speed">50</span><span class="middle"> km/h</span></span><span class="right"></span>
+</div>
+
+<img class="poweredBy" src="files/assets/4239057/1/powered.png">
+
+<div class="gameOver">
+    <div class="score">
+        <span class="shadow"><span class="left"></span><span class="text"></span><span class="right"></span></span>
+        <span class="left"></span><span class="text" bind="game-over.score">0</span><span class="right"></span>
+    </div>
+    <div class="title">
+        <span class="shadow"><span class="left"></span><span class="text"></span><span class="right"></span></span>
+        <span class="left"></span><span class="text">Wasted!</span><span class="right"></span>
+    </div>
+    <div class="speed">
+        <span class="shadow"><span class="left"></span><span class="text"></span><span class="right"></span></span>
+        <span class="left"></span><span class="text"><span bind="game-over.speed">50</span><span class="middle"> km/h</span></span><span class="right"></span>
+    </div>
+</div>
+
+<div class="share">
+    <a class="button twitter" bind="shareTwitter" target="_blank">
+        <span class="shadow"><span class="left"></span><span class="middle"></span><span class="right"></span></span>
+        <span class="body"><span class="left"></span><span class="middle"></span><span class="right"></span></span>
+    </a>
+    <a class="button facebook" bind="shareFacebook" target="_blank">
+        <span class="shadow"><span class="left"></span><span class="middle"></span><span class="right"></span></span>
+        <span class="body"><span class="left"></span><span class="middle"></span><span class="right"></span>
+    </span></a>
+</div>
+
+<div class="restart button" bind="restart">
+    <span class="shadow"><span class="left"></span><span class="middle"></span><span class="right"></span></span>
+    <span class="body">
+        <span class="left"></span>
+        <span class="middle">Restart</span>
+        <span class="right"></span>
+    </span>
+</div>
+
+<div class="mute" bind="mute"></div>
+
+<div class="path">
+    <div class="line">
+        <div class="bar" bind="path"></div>
+    </div>
+    <div class="checkpoints" bind="checkpoints">
+        <div class="checkpoint active"></div>
+        <div class="checkpoint"></div>
+        <div class="checkpoint"></div>
+        <div class="checkpoint"></div>
+        <div class="checkpoint"></div>
+        <div class="checkpoint"></div>
+        <div class="checkpoint"></div>
+        <div class="checkpoint"></div>
+        <div class="checkpoint"></div>
+        <div class="checkpoint"></div>
+        <div class="checkpoint"></div>
+    </div>
+</div></div></body></html>
