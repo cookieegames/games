@@ -51,28 +51,12 @@
 
     </div>
     <br>
-    <button id="Full" onclick="Fullscreen()">Fullscreen</button>
     <br>
     gettmilliseconds calls per second: <span id="getmsps_stats">0.198k</span> Total getmilliseconds calls: <span id="getms_stats">20351</span><br>
     DooM FPS: <span id="fps_stats">35</span> (target: 35FPS) Total Frames drawn: <span id="drawframes_stats">3558</span><br>
     Browser Animation FPS: <span id="animationfps_stats">61</span> (target: around 60FPS, depending on browser)<br>
     <br>
     <br>
-    <script>
-      function Fullscreen() {
-      var elem = document.getElementById("screen");
-      if (elem.requestFullscreen) {
-        elem.requestFullscreen();
-      } else if (elem.mozRequestFullScreen) { /* Firefox */
-        elem.mozRequestFullScreen();
-      } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
-        elem.webkitRequestFullscreen();
-      } else if (elem.msRequestFullscreen) { /* IE/Edge */
-        elem.msRequestFullscreen();
-      }
-    }
-
-    </script>
     <script src="main.js" defer=""></script>
   
 
