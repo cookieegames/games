@@ -1,0 +1,102 @@
+/* Custom CSS for black theme */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap');
+
+body {
+  background-color: #121212; /* Darkened background for a deeper feel */
+  color: #f0f0f0; /* Lightened text color for better contrast */
+  margin: 0;
+  padding: 0;
+  font-family: "Lexend", sans-serif;
+}
+
+#header {
+  background-color: #121212;
+  padding: 20px;
+  text-align: center;
+}
+
+#header h1 {
+  margin: 0;
+  font-size: 36px; /* Increased size for a more prominent header */
+  color: #f0f0f0;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+#header img {
+  width: 15%; /* Reduced image size for a cleaner layout */
+  height: auto;
+}
+
+#content {
+  text-align: center;
+  padding: 40px; /* Increased padding for more breathing room */
+  margin-top: 0; /* Removed margin for seamless flow */
+}
+
+#searchbar {
+  text-align: center;
+  margin: 20px auto;
+}
+
+.search-container {
+  position: relative;
+  display: inline-block;
+}
+
+.form__input {
+    padding: 20px 30px; /* Increased padding for more space */
+    border: none;
+    border-radius: 10px; /* More rounded corners */
+    font-size: 20px; /* Larger font size */
+    width: 400px; /* Wider input field for better usability */
+    max-width: 100%;
+  
+    /* Darker shadow with more blur for emphasis */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  
+    background-color: #1e1e1e; /* Even darker input field */
+    color: #fff; /* White text for better contrast */
+    text-align: center;
+  
+    /* Assuming lol2.png is your search icon */
+    background-image: url('/lol2.png');
+    background-size: 24px; /* Larger search icon */
+    background-repeat: no-repeat;
+    background-position: 97% center; /* More padding from right edge */
+  
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    font-family: "Lexend", sans-serif;
+  }
+  
+
+.form__input::placeholder {
+  color: #d4d4d4;
+  text-align: center;
+}
+
+.form__input:focus {
+  outline: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); /* Stronger shadow on focus */
+  transform: scale(1.01); /* Reduced scale up for a subtle effect */
+}
+
+.search-icon {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #f0f0f0; /* White color */
+  font-size: 2vw; /* Reduced size to match input field */
+  cursor: pointer;
+}
+
+.gtext {
+  text-shadow: none; /* Removed text shadow for cleaner text */
+  font-size: 3em; /* Reduced size for better hierarchy */
+
+}
+body {
+    overflow: hidden;
+  }
+  
