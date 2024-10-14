@@ -1,6 +1,23 @@
-let imageUrl = "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/f9d95985-fc75-461e-8646-63f8a3a3557d/d1c43a0-149f5b37-be50-49b8-b10b-aa63b5d674a2.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2Y5ZDk1OTg1LWZjNzUtNDYxZS04NjQ2LTYzZjhhM2EzNTU3ZFwvZDFjNDNhMC0xNDlmNWIzNy1iZTUwLTQ5YjgtYjEwYi1hYTYzYjVkNjc0YTIuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.kASp_Su4xu1eMHDM5FyJDGT0IZYK4eQoD6dpcpxTyRw";
-let imageBlob = UrlFetchApp.fetch(imageUrl).getBlob();
-let mediaOperation = AdsApp.adMedia().newImageBuilder()
-    .withName("IMAGE_NAME")
-    .withData(imageBlob)
-    .build();
+(function() {
+    var adsenseScript = document.createElement('script');
+    adsenseScript.async = true;
+    adsenseScript.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-';
+    adsenseScript.crossOrigin = 'anonymous';
+    document.head.appendChild(adsenseScript);
+
+    adsenseScript.onload = function() {
+        var adContainer = document.createElement('ins');
+        adContainer.className = 'adsbygoogle';
+        adContainer.style.display = 'inline-block';
+        adContainer.style.width = '300px';
+        adContainer.style.height = '550px';
+        adContainer.setAttribute('data-ad-client', 'ca-pub-2550143154036518');
+        adContainer.setAttribute('data-ad-slot', '7694436076');
+
+        var scriptContainer = document.querySelector('.script-container');
+        if (scriptContainer) {
+            scriptContainer.appendChild(adContainer);
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        }
+    };
+})();
