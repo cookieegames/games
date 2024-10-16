@@ -3,22 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embed Dino Game</title>
+    <title>Fullscreen Dino Game</title>
     <style>
         body {
             background-color: white; /* Set background to white */
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin: 0; /* Remove default margin */
             height: 100vh; /* Full height of the viewport */
+            overflow: hidden; /* Prevent scrolling */
         }
         iframe {
             border: none; /* Remove border from iframe */
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            max-width: 600px; /* Max width for the iframe */
-            max-height: 400px; /* Max height for the iframe */
+            width: 100vw; /* Full width of the viewport */
+            height: 100vh; /* Full height of the viewport */
         }
     </style>
 </head>
