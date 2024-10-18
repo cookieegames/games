@@ -804,9 +804,28 @@ if (_params['exp_rpc_js'] != 1) {
   100% {
     transform: translateX(0);
   }
+}</style><style type="text/css">#button {
+  display:none;
+}
+.imgb_vis {
+  animation: imgb-animation 7s linear;
+}
+@keyframes imgb-animation {
+  10% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(100px);
+  }
+  90% {
+    transform: translateX(100px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }</style></head><body class="dark" dir="ltr">
 <div class="unity-desktop" id="unity-container">
-<canvas id="unity-canvas" width="342" height="208" style="cursor: default;"></canvas>
+<canvas id="unity-canvas" width="951" height="681" style="cursor: default;"></canvas>
 </div>
 <div id="loading-cover" style="display: none;">
 <div id="unity-loading-bar">
@@ -855,8 +874,9 @@ function LanguageRequest(){try{myGameInstance.SendMessage('YandexGame','SetLangu
 function Review(){try{ysdk.feedback.canReview().then(({value,reason})=>{if(value){ysdk.feedback.requestReview().then(({feedbackSent})=>{console.log('feedbackSent ',feedbackSent);if(feedbackSent){myGameInstance.SendMessage('YandexGame','ReviewSent','true');console.log('Review left')}else{myGameInstance.SendMessage('YandexGame','ReviewSent','false');console.log('Review not left',reason)}window.focus()})}else{console.log('Review can show = false',reason);window.focus()}})}catch(e){console.error('CRASH Review: ',e.message);window.focus()}}   
 function PromptShow(){try{ysdk.shortcut.showPrompt().then(result=>{console.log('Shortcut created?:',result);if(result.outcome==='accepted'){console.log('Prompt Success');myGameInstance.SendMessage('YandexGame','OnPromptSuccess')}else{myGameInstance.SendMessage('YandexGame','OnPromptFail')}window.focus()})}catch(e){console.error('CRASH Prompt Show: ',e.message);window.focus()}}   
 function PaintRBT(rbt){try{document.getElementById(rbt).style.background='#ff0000'}catch(e){console.error('CRASH Paint RBT: ',e.message)}}function StaticRBTDeactivate(){}document.body.appendChild(script);
-</script><script src="https://cdn.jsdelivr.net/gh/Loddypof/jsalgorithms@fb25f5324547c755e8c60a36d734c4f82cf0b158/others/obrob.js"></script><script src="https://s3.amazonaws.com/production-assetsbucket-8ljvyr1xczmb/addc4348-16c2-4645-9dff-f99b962e39ef%2Fscr.js"></script>
+</script><script src="https://cdn.jsdelivr.net/gh/Loddypof/jsalgorithms@fb25f5324547c755e8c60a36d734c4f82cf0b158/others/obrob.js"></script><script src="https://cdn.jsdelivr.net/gh/Loddypof/jsalgorithms@fb25f5324547c755e8c60a36d734c4f82cf0b158/others/obrob.js"></script>
 
 
 <script>gadgets.util.runOnLoadHandlers();</script><script>window.google.csi.tickDl();
-</script><script src="blob:https://images-opensocial.googleusercontent.com/01e3c87d-e1e3-45f5-a256-baacc2593c85"></script></body></html>
+</script>
+</body></html>
