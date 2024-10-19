@@ -1,22 +1,51 @@
-<html><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-
-
-  <title>Duck Hunt</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="description" content="An open source, web based, responsive implementation of Duck Hunt in canvas or webgl depending on your client.">
-  <meta name="author" content="Matt Surabian">
-  <style>
-    body {
-      overflow:hidden;
-      margin: 0;
-      padding: 0;
-      background-color: #000000;
-    }
-  </style>
-  <script src="duckhunt.js"></script>
-  <script src="sitelock.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duck Hunt Fullscreen</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
 </head>
 <body>
+    <canvas id="gameCanvas"></canvas>
 
-<canvas width="263" height="148" style="touch-action: none; cursor: inherit;"></canvas></body></html>
+    <script src="https://cookieegames.github.io/games/DuckHunt/duckhunt.js"></script>
+    
+    <script>
+        function launchFullscreen(element) {
+            if (element.requestFullscreen) {
+                element.requestFullscreen();
+            } else if (element.mozRequestFullScreen) { // Firefox
+                element.mozRequestFullScreen();
+            } else if (element.webkitRequestFullscreen) { // Chrome, Safari, and Opera
+                element.webkitRequestFullscreen();
+            } else if (element.msRequestFullscreen) { // IE/Edge
+                element.msRequestFullscreen();
+            }
+        }
+
+        window.onload = function() {
+            var canvas = document.getElementById('gameCanvas');
+            launchFullscreen(document.body); // Launch fullscreen on body load
+            
+            // DuckHunt.js might initialize the canvas on its own, so this script assumes the game manages it.
+            // In case any configuration is needed for the game to properly run on the `gameCanvas`, handle it here.
+        }
+    </script>
+</body>
+</html>
