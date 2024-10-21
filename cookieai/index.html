@@ -1,131 +1,23 @@
-<html lang="en"><head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer">
-<script src="https://pagead2.googlesyndication.com/pagead/managed/js/adsense/m202410150101/show_ads_impl_fy2021.js"></script><script async="" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3858062298850419" crossorigin="anonymous" data-checked-head="true"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-<meta property="og:type" content="Website">
-<meta property="og:url" content="http://cookieegames.github.io/games/">
-<meta property="og:site_name" content="Cookie Games">
-<meta property="og:title" content="Cookie Games - Chat">
-<meta property="og:description" content="Game site for unlocking the restrictions at school.">
-	
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script src="https://unpkg.com/htmx.org@2.0.1" integrity="sha384-QWGpdj554B4ETpJJC9z+ZHJcA/i59TyjxEPXiiUgN2WmTyV5OEZWCD6gQhgkdpB/" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://raw.githubusercontent.com/cookieegames/games/main/cookieai/assets/base.css%3Ft%3D1729471413">
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script><meta http-equiv="origin-trial" content="AlK2UR5SkAlj8jjdEc9p3F3xuFYlF6LYjAML3EOqw1g26eCwWPjdmecULvBH5MVPoqKYrOfPhYVL71xAXI1IBQoAAAB8eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3NTgwNjcxOTksImlzU3ViZG9tYWluIjp0cnVlfQ=="><meta http-equiv="origin-trial" content="Amm8/NmvvQfhwCib6I7ZsmUxiSCfOxWxHayJwyU1r3gRIItzr7bNQid6O8ZYaE1GSQTa69WwhPC9flq/oYkRBwsAAACCeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3NTgwNjcxOTksImlzU3ViZG9tYWluIjp0cnVlfQ=="><meta http-equiv="origin-trial" content="A9wSqI5i0iwGdf6L1CERNdmsTPgVu44ewj8QxTBYgsv1LCPUVF7YmWOvTappqB1139jAymxUW/RO8zmMqo4zlAAAAACNeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiRmxlZGdlQmlkZGluZ0FuZEF1Y3Rpb25TZXJ2ZXIiLCJleHBpcnkiOjE3MzY4MTI4MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A+d7vJfYtay4OUbdtRPZA3y7bKQLsxaMEPmxgfhBGqKXNrdkCQeJlUwqa6EBbSfjwFtJWTrWIioXeMW+y8bWAgQAAACTeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiRmxlZGdlQmlkZGluZ0FuZEF1Y3Rpb25TZXJ2ZXIiLCJleHBpcnkiOjE3MzY4MTI4MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9">
-<title>Ai Cookie Edition</title>
-<script src="/games/cookieai/assets/js/main.js"></script>
-<style>      .htmx-indicator{opacity:0}      .htmx-request .htmx-indicator{opacity:1; transition: opacity 200ms ease-in;}      .htmx-request.htmx-indicator{opacity:1; transition: opacity 200ms ease-in;}      </style></head>
-<body id="body">
+<div id="chat-container">
+    <div id="chat-box"></div>
     
-    
-        
-        
-<style>
-    #message {
-        text-align: left;
-        width: 90%;
-        margin: 5px auto;
-    }
-
-    #msgbox {
-        width: 75%;
-    }
-
-    #chatForm {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 10px;
-    }
-
-    #submitbtn {
-        margin-left: 5px;
-    }
-</style>
-
-<div id="main">
-    <div class="item-container" style="display: block; width: 90%; height: 70vh; margin: 10px auto; max-height: 500px; overflow-y: auto;">
-        <div id="chatbox" style="overflow-y: auto; height: 100%;">
-            <div id="responseContainer"></div>
-        </div>
+    <div id="input-container">
+        <input type="text" id="user-input" placeholder="Ask your question..." />
+        <button id="send-button">Send</button>
     </div>
-
-    <form id="chatForm">
-        <textarea id="message" placeholder="Enter your message" required=""></textarea>
-        <button type="submit" id="submitbtn">Send</button>
-    </form>
-
-    <p id="notice-box"></p>
-    <p id="user-stats"></p>
-
-    <script>
-        const chatForm = document.getElementById('chatForm');
-        const chatbox = document.getElementById('chatbox');
-        const messageInput = document.getElementById('message');
-        const responseContainer = document.getElementById('responseContainer');
-        const chatHistory = [];
-
-        async function fetchResponse(history) {
-            const response = await fetch('/api/v1/ai', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ history })
-            });
-
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw errorData; // Throw the entire error response for handling
-            }
-
-            return response.json();
-        }
-
-        chatForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const message = messageInput.value;
-            responseContainer.innerHTML = 'Loading...';
-
-            chatHistory.push({ role: 'user', content: message });
-            updateChatBox();
-
-            try {
-                const data = await fetchResponse(chatHistory);
-                const assistantMessage = data.choices[0].message.content;
-                responseContainer.innerHTML = `
-                    <div class="response">
-                        <h2>Response:</h2>
-                        <p><strong>Assistant:</strong> ${assistantMessage}</p>
-                    </div>
-                `;
-                chatHistory.push({ role: 'assistant', content: assistantMessage });
-                updateChatBox();
-            } catch (error) {
-                const errorMessage = error.error?.message || 'An unknown error occurred.';
-                const hint = error.error?.hint || 'Please try again later.';
-                responseContainer.innerHTML = `
-                    <p>Error: ${errorMessage}</p>
-                    <p>Hint: ${hint}</p>
-                `;
-            }
-
-            messageInput.value = '';
-        });
-
-        function updateChatBox() {
-            chatbox.innerHTML = '';
-            chatHistory.forEach(entry => {
-                const messageDiv = document.createElement('div');
-                messageDiv.innerHTML = marked.parse(`<strong>${entry.role}:</strong> ${entry.content}`);
-                chatbox.appendChild(messageDiv);
-            });
-            chatbox.scrollTop = chatbox.scrollHeight;
-        }
-    </script>
 </div>
 
+<script src="app.js"></script>
 
-
-</body><iframe id="google_esf" name="google_esf" src="https://googleads.g.doubleclick.net/pagead/html/r20241014/r20190131/zrt_lookup_fy2021.html" style="display: none;"></iframe></html>
+</body>
+</html>
