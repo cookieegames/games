@@ -1,0 +1,53 @@
+/* General Body Styling */
+body {
+  background-color: #F3E5D1; /* Pale cookie-like background */
+  color: #4D342B; /* Dark brown text */
+  font-family: 'Arial', sans-serif;
+}
+
+/* Links Styling */
+a {
+  color: #A67C52; /* Light brown for links */
+  text-decoration: none;
+}
+
+a:hover {
+  color: #8B5A2B; /* Darker brown on hover */
+}
+
+/* Header Styling */
+header {
+  background-color: #D9B382; /* Cookie dough-like color */
+  color: #4D342B; /* Dark brown for text */
+  padding: 20px;
+  text-align: center;
+}
+
+/* Button Styling */
+button {
+  background-color: #C9A56A; /* Pale golden brown */
+  color: #4D342B; /* Dark brown text */
+  border: 2px solid #8B5A2B; /* Darker brown border */
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #B0875B; /* Slightly darker on hover */
+}
+
+/* Footer Styling */
+footer {
+  background-color: #4D342B; /* Dark brown */
+  color: #F3E5D1; /* Pale cookie-like text */
+  padding: 20px;
+  text-align: center;
+}
+
+/* Input Field Styling */
+input[type="text"] {
+  background-color: #F3E5D1; /* Pale cookie-like input field */
+  color: #4D342B; /* Dark brown text */
+  border: 1px solid #C9A56A; /* Pale golden brown border */
+  padding: 10px;
+}
