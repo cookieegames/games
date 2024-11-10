@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Super Fowlst</title>
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" id="viewport" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    
+    <link rel="shortcut icon" type="image/png" href="./favicon.png">
+    
+    <!-- Added for Poki -->
+    <script src="//game-cdn.poki.com/scripts/v2/poki-sdk.js"></script>
+    <script src="https://game-cdn.poki.com/scripts/b5976c032b004c1e1d10973e556f48d623c54f83/poki-sdk-hoist-b5976c032b004c1e1d10973e556f48d623c54f83.js" type="text/javascript" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="Super Fowlst POKI.js"></script>
+
+    <script>
+        window.addEventListener("touchmove", function(event) {
+            event.preventDefault();
+        }, { capture: false, passive: false });
+
+        if (typeof window.devicePixelRatio != 'undefined' && window.devicePixelRatio > 2) {
+            var meta = document.getElementById("viewport");
+            meta.setAttribute('content', 'width=device-width, initial-scale=' + (2 / window.devicePixelRatio) + ', user-scalable=no');
+        }
+    </script>
+
+    <style>
+        html, body { 
+            margin: 0; 
+            padding: 0; 
+            height: 100%; 
+            overflow: hidden; 
+        }
+        #content { 
+            background: #000000; 
+            width: 100%; 
+            height: 100%; 
+        }
+    </style>
+
+</head>
+<body dir="ltr">
+    <script src="set.js" type="text/javascript"></script>
+    <script src="game.js"></script>
+    <script src="SuperFowlst.js" type="text/javascript"></script>
+    <script>
+        lime.embed("Super Fowlst", "content", 960, 540);
+    </script>
+    
+    <div id="content" style="cursor: default;">
+        <canvas width="960" height="540" style="transform: translateZ(0px); width: 263px; height: 147px; margin-left: 0px; margin-top: 1px;"></canvas>
+    </div>
+
+    <script type="text/javascript">
+        gadgets.util.runOnLoadHandlers();
+    </script>
+    <script>
+        window.google.csi.tickDl();
+    </script>
+
+</body>
+</html>
