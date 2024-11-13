@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie Chatroom</title>
+  <style>
+    /* Basic Discord-like styling */
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #36393f;
+      color: white;
+    }
+    #chatApp {
+      width: 60%;
+      max-width: 800px;
+      height: 80%;
+      display: flex;
+      flex-direction: column;
+      background-color: #2f3136;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    #loginScreen, #chatScreen {
+      display: none;
+      flex-direction: column;
+      height: 100%;
+    }
+    #loginScreen.active, #chatScreen.active {
+      display: flex;
+    }
+    #loginForm, #messageForm {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+    #loginForm input, #messageForm input[type="text"] {
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+    #chatHeader {
+      padding: 10px;
+      background-color: #202225;
+      text-align: center;
+      font-weight: bold;
+    }
+    #chatWindow {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      background-color: #36393f;
+    }
+    .message {
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      background-color: #40444b;
+      display: flex;
+      flex-direction: column;
+    }
+    .message .username {
+      font-weight: bold;
+      color: #7289da;
+    }
+    .message .timestamp {
+      font-size: 0.7em;
+      color: #b9bbbe;
+      align-self: flex-end;
+    }
+    #messageForm {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background-color: #202225;
+    }
+    #messageInput {
+      flex-grow: 1;
+      padding: 10px;
+      margin-right: 10px;
+      border-radius: 5px;
+      border: none;
+    }
+    #messageForm input[type="file"] {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="chatApp">
+    <!-- Login Screen -->
+    <div id="loginScreen" class="active">
+      <form id="loginForm">
+        <h2>Login / Sign Up</h2>
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Login / Sign Up</button>
+      </form>
+    </div>
+
+    <!-- Chat Screen -->
+    <div id="chatScreen">
+      <div id="chatHeader">Cookie Chat</div>
+      <div id="chatWindow"></div>
+      <form id="messageForm">
+        <input type="text" id="messageInput" placeholder="Type a message..." required>
+        <input type="file" id="imageInput" accept="image/*">
+        <button type="button" onclick="sendMessage()">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const loginScreen = document.getElementById('loginScreen');
+    const chatScreen = document.getElementById('chatScreen');
+    const chatWindow = document.getElementById('chatWindow');
+    const messageForm = document.getElementById('messageForm');
+    const messageInput = document.getElementById('messageInput');
+    const imageInput = document.getElementById('imageInput');
+
+    // User data in local storage
+    function isLoggedIn() {
+      return localStorage.getItem('username') && localStorage.getItem('password');
+    }
+    function loginUser(username, password) {
+      localStorage.setItem('username', username);
+      localStorage.setItem('password', password);
+      loginScreen.classList.remove('active');
+      chatScreen.classList.add('active');
+      loadMessages();
+    }
+
+    // Check if already logged in
+    if (isLoggedIn()) {
+      loginScreen.classList.remove('active');
+      chatScreen.classList.add('active');
+      loadMessages();
+    }
+
+    document.getElementById('loginForm').onsubmit = (e) => {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      loginUser(username, password);
+    };
+
+    function loadMessages() {
+      // Load chat messages (stubbed with empty array)
+      chatWindow.innerHTML = '';
+      const messages = JSON.parse(localStorage.getItem('messages')) || [];
+      messages.forEach(displayMessage);
+    }
+
+    function sendMessage() {
+      const messageText = messageInput.value;
+      const username = localStorage.getItem('username');
+      const timestamp = new Date().toLocaleTimeString();
+      let imageSrc = '';
+
+      if (imageInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          imageSrc = e.target.result;
+          storeAndDisplayMessage(username, messageText, timestamp, imageSrc);
+        };
+        reader.readAsDataURL(imageInput.files[0]);
+      } else {
+        storeAndDisplayMessage(username, messageText, timestamp, imageSrc);
+      }
+
+      messageInput.value = '';
+      imageInput.value = '';
+    }
+
+    function storeAndDisplayMessage(username, text, timestamp, imageSrc) {
+      const message = { username, text, timestamp, imageSrc };
+      const messages = JSON.parse(localStorage.getItem('messages')) || [];
+      messages.push(message);
+      localStorage.setItem('messages', JSON.stringify(messages));
+      displayMessage(message);
+    }
+
+    function displayMessage({ username, text, timestamp, imageSrc }) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message';
+
+      const usernameSpan = document.createElement('span');
+      usernameSpan.className = 'username';
+      usernameSpan.innerText = username;
+
+      const textSpan = document.createElement('span');
+      textSpan.innerText = text;
+
+      const timestampSpan = document.createElement('span');
+      timestampSpan.className = 'timestamp';
+      timestampSpan.innerText = timestamp;
+
+      messageDiv.append(usernameSpan, textSpan, timestampSpan);
+
+      if (imageSrc) {
+        const img = document.createElement('img');
+        img.src = imageSrc;
+        img.style.maxWidth = '200px';
+        img.style.marginTop = '5px';
+        messageDiv.appendChild(img);
+      }
+
+      chatWindow.appendChild(messageDiv);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+  </script>
+</body>
+</html>
