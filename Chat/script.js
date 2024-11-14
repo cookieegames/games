@@ -126,7 +126,15 @@ logoutButton.addEventListener('click', () => {
 auth.onAuthStateChanged(user => {
   if (user) {
     userInfo.textContent = `Logged in as: ${user.displayName}`;
+    loginButton.style.display = "none";
+    signupButton.style.display = "none";
+    logoutButton.style.display = "inline-block";
+    document.querySelector(".chat-container").style.display = "block";
   } else {
     userInfo.textContent = "Not logged in";
+    loginButton.style.display = "inline-block";
+    signupButton.style.display = "inline-block";
+    logoutButton.style.display = "none";
+    document.querySelector(".chat-container").style.display = "none";
   }
 });
