@@ -16,12 +16,11 @@ const db = firebase.database();
 const auth = firebase.auth();
 
 // Get elements from the DOM
+const loginForm = document.getElementById('loginForm');
 const chatWindow = document.getElementById('chatWindow');
 const messageInput = document.getElementById('messageInput');
 const sendButton = document.getElementById('sendButton');
-const loginButton = document.getElementById('loginButton');
-const signupButton = document.getElementById('signupButton');
-const logoutButton = document.getElementById('logoutButton');
+const submitButton = document.getElementById('submitButton');
 const userInfo = document.getElementById('userInfo');
 
 // Function to add a message to the chat window
@@ -83,67 +82,50 @@ db.ref("messages").on("child_added", snapshot => {
   addMessage(snapshot.key, messageData.username, messageData.text, messageData.timestamp);
 });
 
-// Handle Sign Up (with username and password)
-signupButton.addEventListener('click', () => {
-  const username = prompt('Enter your desired username:');
-  const password = prompt('Enter your password:');
-  
-  // First create an account with a dummy email (for Firebase Auth)
-  const dummyEmail = `${username}@cookiechat.com`;  // Create a dummy email to register with Firebase
+// Handle Login / Sign Up when the submit button is clicked
+submitButton.addEventListener('click', () => {
+  const username = document.getElementById('usernameInput').value.trim();
+  const password = document.getElementById('passwordInput').value.trim();
 
-  auth.createUserWithEmailAndPassword(dummyEmail, password)
-    .then(userCredential => {
-      // After signing up, set the displayName to the entered username
-      userCredential.user.updateProfile({
-        displayName: username
+  if (username && password) {
+    // Check if user already exists by trying to log in
+    const dummyEmail = `${username}@cookiechat.com`;  // Create a dummy email to register or log in with Firebase
+
+    auth.signInWithEmailAndPassword(dummyEmail, password)
+      .catch(error => {
+        if (error.code === 'auth/user-not-found') {
+          // If user not found, create a new user
+          auth.createUserWithEmailAndPassword(dummyEmail, password)
+            .then(userCredential => {
+              // After signing up, set the displayName to the entered username
+              userCredential.user.updateProfile({
+                displayName: username
+              });
+              alert("Signed up successfully!");
+            })
+            .catch(error => {
+              console.error(error.message);
+              alert("Error signing up!");
+            });
+        } else {
+          console.error(error.message);
+          alert("Error logging in!");
+        }
       });
-      alert("Signed up successfully!");
-    })
-    .catch(error => {
-      console.error(error.message);
-      alert("Error signing up!");
-    });
-});
-
-// Handle Login (with username and password)
-loginButton.addEventListener('click', () => {
-  const username = prompt('Enter your username:');
-  const password = prompt('Enter your password:');
-
-  // Try logging in with the dummy email based on username
-  const dummyEmail = `${username}@cookiechat.com`;  // Use a dummy email based on username
-  
-  auth.signInWithEmailAndPassword(dummyEmail, password)
-    .catch(error => {
-      console.error(error.message);
-      alert("Error logging in!");
-    });
-});
-
-// Handle Logout
-logoutButton.addEventListener('click', () => {
-  auth.signOut()
-    .then(() => {
-      alert("Logged out!");
-    })
-    .catch(error => {
-      console.error(error.message);
-    });
+  } else {
+    alert("Please enter a username and password.");
+  }
 });
 
 // Handle Auth State Changes
 auth.onAuthStateChanged(user => {
   if (user) {
     userInfo.textContent = `Logged in as: ${user.displayName}`;
-    loginButton.style.display = "none";
-    signupButton.style.display = "none";
-    logoutButton.style.display = "inline-block";
-    document.querySelector(".chat-container").style.display = "block";
+    loginForm.style.display = "none"; // Hide the login form
+    document.querySelector(".chat-container").style.display = "block"; // Show chat container
   } else {
     userInfo.textContent = "Not logged in";
-    loginButton.style.display = "inline-block";
-    signupButton.style.display = "inline-block";
-    logoutButton.style.display = "none";
-    document.querySelector(".chat-container").style.display = "none";
+    loginForm.style.display = "block"; // Show the login form
+    document.querySelector(".chat-container").style.display = "none"; // Hide chat container
   }
 });
