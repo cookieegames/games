@@ -7,16 +7,18 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- Authentication Section -->
   <div class="auth-container">
-    <!-- Display logged-in user's info -->
+    <h2>Welcome to Cookie Chat</h2>
     <div id="userInfo">Not logged in</div>
 
     <!-- Login / Sign-up / Logout Buttons -->
-    <button id="loginButton">Login</button>
-    <button id="signupButton">Sign Up</button>
-    <button id="logoutButton" style="display: none;">Logout</button>
+    <button id="loginButton" class="auth-btn">Login</button>
+    <button id="signupButton" class="auth-btn">Sign Up</button>
+    <button id="logoutButton" class="auth-btn" style="display: none;">Logout</button>
   </div>
 
+  <!-- Chat Section -->
   <div class="chat-container" style="display: none;">
     <div class="chat-window" id="chatWindow"></div>
     <input type="text" id="messageInput" placeholder="Type your message..." autocomplete="off">
