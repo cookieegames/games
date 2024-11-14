@@ -7,27 +7,23 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Authentication Section -->
   <div class="auth-container">
     <h2>Welcome to Cookie Chat</h2>
-    <div id="userInfo">Not logged in</div>
-
-    <!-- Login / Sign-up / Logout Buttons -->
-    <button id="loginButton" class="auth-btn">Login</button>
-    <button id="signupButton" class="auth-btn">Sign Up</button>
-    <button id="logoutButton" class="auth-btn" style="display: none;">Logout</button>
+    <button id="loginButton">Login</button>
+    <button id="signupButton">Sign Up</button>
+    <button id="logoutButton" style="display: none;">Logout</button>
+    <p id="userInfo">Not logged in</p>
   </div>
 
-  <!-- Chat Section -->
   <div class="chat-container" style="display: none;">
     <div class="chat-window" id="chatWindow"></div>
     <input type="text" id="messageInput" placeholder="Type your message..." autocomplete="off">
     <button id="sendButton">Send</button>
   </div>
 
-  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
