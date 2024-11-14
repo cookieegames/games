@@ -42,7 +42,7 @@ function addMessage(messageId, username, text, timestamp) {
   chatWindow.scrollTop = chatWindow.scrollHeight; // Auto-scroll to the bottom
 }
 
-// Function to send message to Firebase
+// Function to send a message to Firebase
 function sendMessage() {
   const message = messageInput.value.trim();
   if (message && auth.currentUser) {
@@ -83,14 +83,19 @@ db.ref("messages").on("child_added", snapshot => {
   addMessage(snapshot.key, messageData.username, messageData.text, messageData.timestamp);
 });
 
-// Handle Login
+// Handle Sign Up (with username and password)
 signupButton.addEventListener('click', () => {
-  const email = prompt('Enter your email:');
+  const username = prompt('Enter your desired username:');
   const password = prompt('Enter your password:');
-  auth.createUserWithEmailAndPassword(email, password)
+  
+  // First create an account with a dummy email (for Firebase Auth)
+  const dummyEmail = `${username}@cookiechat.com`;  // Create a dummy email to register with Firebase
+
+  auth.createUserWithEmailAndPassword(dummyEmail, password)
     .then(userCredential => {
+      // After signing up, set the displayName to the entered username
       userCredential.user.updateProfile({
-        displayName: email.split('@')[0] // Use email prefix as username
+        displayName: username
       });
       alert("Signed up successfully!");
     })
@@ -100,11 +105,15 @@ signupButton.addEventListener('click', () => {
     });
 });
 
-// Handle Login
+// Handle Login (with username and password)
 loginButton.addEventListener('click', () => {
-  const email = prompt('Enter your email:');
+  const username = prompt('Enter your username:');
   const password = prompt('Enter your password:');
-  auth.signInWithEmailAndPassword(email, password)
+
+  // Try logging in with the dummy email based on username
+  const dummyEmail = `${username}@cookiechat.com`;  // Use a dummy email based on username
+  
+  auth.signInWithEmailAndPassword(dummyEmail, password)
     .catch(error => {
       console.error(error.message);
       alert("Error logging in!");
