@@ -9,9 +9,11 @@
 <body>
   <div class="auth-container">
     <h2>Welcome to Cookie Chat</h2>
-    <button id="loginButton">Login</button>
-    <button id="signupButton">Sign Up</button>
-    <button id="logoutButton" style="display: none;">Logout</button>
+    <div id="loginForm">
+      <input type="text" id="usernameInput" placeholder="Enter your username" autocomplete="off">
+      <input type="password" id="passwordInput" placeholder="Enter your password" autocomplete="off">
+      <button id="submitButton">Login / Sign Up</button>
+    </div>
     <p id="userInfo">Not logged in</p>
   </div>
 
