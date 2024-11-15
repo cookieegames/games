@@ -28,13 +28,20 @@
         }
         .image-link {
             margin: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
-        img {
-            width: 100px;
-            height: auto;
-            margin: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
+        .image-link input {
+            width: 80%;
+            padding: 5px;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+        button {
+            padding: 5px 10px;
+            font-size: 14px;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -77,46 +84,55 @@
         });
     });
 
-    function handleFiles(files) {
-        [...files].forEach((file) => {
+    async function handleFiles(files) {
+        [...files].forEach(async (file) => {
             if (file.type.startsWith('image/')) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    const img = new Image();
-                    img.onload = () => {
-                        const canvas = document.createElement('canvas');
-                        const ctx = canvas.getContext('2d');
+                const formData = new FormData();
+                formData.append('image', file);
 
-                        // Set canvas size to the image size
-                        canvas.width = img.width;
-                        canvas.height = img.height;
+                // Upload the file to the server
+                try {
+                    const response = await fetch('/upload', { // Replace `/upload` with your actual endpoint
+                        method: 'POST',
+                        body: formData,
+                    });
 
-                        // Draw the image onto the canvas
-                        ctx.drawImage(img, 0, 0);
-
-                        // Convert the image to PNG format
-                        const pngDataUrl = canvas.toDataURL('image/png');
-
-                        // Display the image preview
-                        const imgPreview = document.createElement('img');
-                        imgPreview.src = pngDataUrl;
-                        imageLinksDiv.appendChild(imgPreview);
-
-                        // Create a downloadable link
-                        const link = document.createElement('a');
-                        link.href = pngDataUrl;
-                        link.textContent = `${file.name.split('.')[0]}.png`;
-                        link.download = `${file.name.split('.')[0]}.png`;
-                        link.className = 'image-link';
-                        imageLinksDiv.appendChild(link);
-                    };
-                    img.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
+                    if (response.ok) {
+                        const { url } = await response.json(); // Assuming the server returns a JSON with `url` field
+                        createLinkUI(url, file.name);
+                    } else {
+                        alert('Failed to upload image.');
+                    }
+                } catch (error) {
+                    console.error('Upload error:', error);
+                    alert('An error occurred while uploading.');
+                }
             } else {
                 alert('Please upload a valid image file!');
             }
         });
+    }
+
+    function createLinkUI(url, fileName) {
+        const div = document.createElement('div');
+        div.className = 'image-link';
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = url;
+        input.readOnly = true;
+
+        const button = document.createElement('button');
+        button.textContent = 'Copy';
+        button.addEventListener('click', () => {
+            input.select();
+            document.execCommand('copy');
+            alert('Link copied to clipboard!');
+        });
+
+        div.appendChild(input);
+        div.appendChild(button);
+        imageLinksDiv.appendChild(div);
     }
 </script>
 
