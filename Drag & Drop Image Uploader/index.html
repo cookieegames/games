@@ -69,7 +69,7 @@
     dropZone.addEventListener('click', () => {
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
-        fileInput.accept = 'image/png';
+        fileInput.accept = 'image/*';
         fileInput.multiple = true;
         fileInput.click();
         fileInput.addEventListener('change', () => {
@@ -79,23 +79,42 @@
 
     function handleFiles(files) {
         [...files].forEach((file) => {
-            if (file.type === 'image/png') {
+            if (file.type.startsWith('image/')) {
                 const reader = new FileReader();
                 reader.onload = (e) => {
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    imageLinksDiv.appendChild(img);
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
 
-                    const link = document.createElement('a');
-                    link.href = e.target.result;
-                    link.textContent = file.name;
-                    link.download = file.name;
-                    link.className = 'image-link';
-                    imageLinksDiv.appendChild(link);
+                        // Set canvas size to the image size
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+
+                        // Draw the image onto the canvas
+                        ctx.drawImage(img, 0, 0);
+
+                        // Convert the image to PNG format
+                        const pngDataUrl = canvas.toDataURL('image/png');
+
+                        // Display the image preview
+                        const imgPreview = document.createElement('img');
+                        imgPreview.src = pngDataUrl;
+                        imageLinksDiv.appendChild(imgPreview);
+
+                        // Create a downloadable link
+                        const link = document.createElement('a');
+                        link.href = pngDataUrl;
+                        link.textContent = `${file.name.split('.')[0]}.png`;
+                        link.download = `${file.name.split('.')[0]}.png`;
+                        link.className = 'image-link';
+                        imageLinksDiv.appendChild(link);
+                    };
+                    img.src = e.target.result;
                 };
                 reader.readAsDataURL(file);
             } else {
-                alert('Only PNG files are supported!');
+                alert('Please upload a valid image file!');
             }
         });
     }
