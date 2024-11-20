@@ -46,41 +46,58 @@
 
         #chat-container {
             width: 100%;
-            max-width: 700px;
-            height: calc(50vh - 40px);
+            max-width: 600px;
+            height: 50vh;
             padding: 10px;
             background-color: #3a3a3a;
             border: 2px solid #846a51;
             border-radius: 10px;
             overflow-y: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start;
             gap: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .message {
+            text-align: center;
             margin-bottom: 10px;
+        }
+
+        .message strong {
+            display: block;
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+        }
+
+        .message p {
             font-size: 1.2rem;
+            margin: 0;
         }
 
         .input-container {
             position: relative;
             width: 100%;
-            max-width: 700px;
+            max-width: 600px;
         }
 
         #user-input {
             width: 100%;
-            padding: 10px 50px 10px 10px; /* Leaves space for the button inside */
-            border: 2px solid #846a51;
+            padding: 12px 50px 12px 12px; /* Padding for the button */
+            border: 1px solid #4a4a4a;
             border-radius: 8px;
             background-color: #3a3a3a;
             color: #d3d3d3;
-            font-size: 1.2rem;
+            margin: 0 auto;
+            resize: none;
+            font-size: 1rem;
         }
 
         #send-button {
             position: absolute;
-            right: 10px;
+            right: 5px;
             top: 50%;
             transform: translateY(-50%);
             width: 40px;
@@ -105,7 +122,17 @@
 
 <body>
     <h1>Cookie AI</h1>
-    <div id="chat-container">How can I help you?</div>
+    <div id="chat-container">
+        <!-- Example messages -->
+        <div class="message">
+            <strong>YOU:</strong>
+            <p>Hi there!</p>
+        </div>
+        <div class="message">
+            <strong>AI:</strong>
+            <p>Hello! How can I assist you today?</p>
+        </div>
+    </div>
     <div class="input-container">
         <textarea id="user-input" placeholder="Type your message here..."></textarea>
         <button id="send-button">➤</button>
