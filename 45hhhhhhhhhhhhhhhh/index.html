@@ -47,12 +47,10 @@
         #chat-container {
             width: 100%;
             max-width: 600px;
-            height: 50vh;
             padding: 10px;
             background-color: #3a3a3a;
             border: 2px solid #846a51;
             border-radius: 10px;
-            overflow-y: auto;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
             margin-bottom: 20px;
             font-size: 1.2rem;
@@ -123,15 +121,7 @@
 <body>
     <h1>Cookie AI</h1>
     <div id="chat-container">
-        <!-- Example messages -->
-        <div class="message">
-            <strong>YOU:</strong>
-            <p>Hi there!</p>
-        </div>
-        <div class="message">
-            <strong>AI:</strong>
-            <p>Hello! How can I assist you today?</p>
-        </div>
+        <!-- Messages will appear here dynamically -->
     </div>
     <div class="input-container">
         <textarea id="user-input" placeholder="Type your message here..."></textarea>
