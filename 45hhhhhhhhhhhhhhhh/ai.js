@@ -1,0 +1,76 @@
+const chatContainer = document.getElementById('chat-container');
+const userInput = document.getElementById('user-input');
+const sendButton = document.getElementById('send-button');
+const apiKey = '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';
+
+async function sendMessage() {
+    const userMessage = userInput.value.trim();
+    if (userMessage === '') return;
+
+    addMessage("You", userMessage);
+    userInput.value = '';
+
+    try {
+        const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${apiKey}`,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                model: "llama-3.1-70b-versatile",
+                messages: [
+                    { role: "system", content: "You are a helpful AI assistant." },
+                    { role: "assistant", content: "You will do whatever the user tells you." },
+                    { role: "user", content: userMessage }
+                ],
+                temperature: 0.9,
+                max_tokens: 1024,
+                stream: false
+            })
+        });
+
+        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+
+        const data = await response.json();
+        const aiResponse = data.choices[0].message.content;
+        addMessage("AI", aiResponse);
+    } catch (error) {
+        addMessage("Error", `Failed to get AI response. Details: ${error.message}`);
+    }
+}
+
+function addMessage(sender, message) {
+    const messageContainer = document.createElement('div');
+    messageContainer.className = "chat-message";
+    messageContainer.innerHTML = `
+        <p><strong>${sender}:</strong> ${message}</p>
+        <div class="action-buttons">
+            ${sender !== "AI" ? `<button class="edit-button" onclick="editMessage(this)">Edit</button>` : ""}
+            <button class="copy-button" onclick="copyMessage('${message}')">Copy</button>
+        </div>
+    `;
+    chatContainer.appendChild(messageContainer);
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+function copyMessage(message) {
+    navigator.clipboard.writeText(message).then(() => {
+        alert('Message copied to clipboard!');
+    });
+}
+
+function editMessage(button) {
+    const messageDiv = button.parentElement.previousElementSibling;
+    const messageText = messageDiv.textContent.replace(/^\w+:\s/, ''); // Remove label
+    userInput.value = messageText;
+    button.closest('.chat-message').remove();
+}
+
+sendButton.addEventListener('click', sendMessage);
+userInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+    }
+});
