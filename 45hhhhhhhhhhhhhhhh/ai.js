@@ -47,10 +47,6 @@ function addMessage(sender, message) {
     messageContainer.className = "chat-message";
     messageContainer.innerHTML = `
         <p><strong>${sender}:</strong> ${message}</p>
-        <div class="action-buttons">
-            ${sender !== "AI" ? `<button class="edit-button" onclick="editMessage(this)">Edit</button>` : ""}
-            <button class="copy-button" onclick="copyMessage('${message.replace(/'/g, "\\'")}')">Copy</button>
-        </div>
     `;
     chatContainer.appendChild(messageContainer);
     chatContainer.scrollTop = chatContainer.scrollHeight;
