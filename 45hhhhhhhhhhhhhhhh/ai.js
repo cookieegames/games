@@ -56,20 +56,8 @@ function addMessage(sender, message) {
     chatContainer.scrollTop = chatContainer.scrollHeight;
 }
 
-// Copy a message to the clipboard
-function copyMessage(message) {
-    navigator.clipboard.writeText(message).then(() => {
-        alert('Message copied to clipboard!');
-    });
-}
 
-// Edit a user message
-function editMessage(button) {
-    const messageDiv = button.parentElement.previousElementSibling;
-    const messageText = messageDiv.textContent.replace(/^\w+:\s/, ''); // Remove label
-    userInput.value = messageText;
-    button.closest('.chat-message').remove();
-}
+
 
 // Add event listener to the send button
 sendButton.addEventListener('click', sendMessage);
