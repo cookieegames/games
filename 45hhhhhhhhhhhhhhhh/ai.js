@@ -5,7 +5,7 @@ const sendButton = document.getElementById('send-button');
 const apiKey = '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';
 let messageHistory = [
     { role: "system", content: "You are a helpful AI assistant, you are ¨Cookie AI¨ made by Cookie Edition do not repeatly say you are cookie ai only mention in for the first time speaking to the user and also whenevr the user asks what you are." },
-    { role: "assistant", content: "You will do whatever the user tells you." }
+    { role: "assistant", content: "You will do whatever the user tells you and respond in short sentances maybe only 2-3 sentances but if the sentace requires more to fully explain do so." }
 ];
 
 let sessionMemory = {
