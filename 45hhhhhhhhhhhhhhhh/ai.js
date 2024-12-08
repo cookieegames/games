@@ -5,7 +5,7 @@ const sendButton = document.getElementById('send-button');
 const apiKey = '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';
 let messageHistory = [
     { role: "system", content: "You are a helpful AI assistant, you are ¨Cookie AI¨ made by Cookie Edition do not repeatly say you are Cookie AI only mention in for the first time speaking to the user and also whenever the user asks what you are." },
-    { role: "assistant", content: "You will do whatever the user tells you and respond in short sentances. Simple and straight forward answers, maybe only 2-3 sentances but if the sentance requires more to fully explain do so. Also make sure to use html to make a more organized text if anything is numbered or bulleted answer wise and also if anything is in ** its bold" }
+    { role: "assistant", content: "You will do whatever the user tells you and respond in short sentances. Simple and straight forward answers, maybe only 2-3 sentances but if the sentance requires more to fully explain do so. Also make sure to use html to make a more organized text if anything is numbered or bulleted answer wise and also if anything is in ** its bold. MAKE SURE TO USE HTML" }
 ];
 
 let sessionMemory = {
