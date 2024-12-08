@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap">
+    <title>Cookie Listing</title>
+    <style>
+        body {
+            font-family: 'Bebas Neue', Arial, sans-serif;
+            background-color: #2e2e2e;
+            color: #e8e8e8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #846a51;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        #task-container {
+            width: 100%;
+            max-width: 670px;
+            height: 400px;
+            overflow-y: auto;
+            padding: 15px;
+            background-color: #3a3a3a;
+            border: 2px solid #846a51;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .task-item {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: rgba(50, 50, 50, 0.8);
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #input-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            max-width: 700px;
+        }
+
+        #task-input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #4a4a4a;
+            border-radius: 8px;
+            background-color: #3a3a3a;
+            color: #d3d3d3;
+            font-family: 'Bebas Neue', Arial, sans-serif;
+            font-size: 1.2rem;
+            height: 50px;
+        }
+
+        #date-input, #priority-input {
+            padding: 12px;
+            border: 1px solid #4a4a4a;
+            border-radius: 8px;
+            background-color: #3a3a3a;
+            color: #d3d3d3;
+            font-family: 'Bebas Neue', Arial, sans-serif;
+            font-size: 1.2rem;
+            height: 50px;
+        }
+
+        #add-task {
+            padding: 12px 20px;
+            background-color: #846a51;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: bold;
+            height: 75px; /* Match height with input fields */
+        }
+
+        #add-task:hover {
+            background-color: #9b7d63;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Cookie Listing</h1>
+    <div id="task-container"></div>
+    <div id="input-container">
+        <input type="text" id="task-input" placeholder="Enter your cookie task..." required>
+        <input type="datetime-local" id="date-input" required>
+        <input type="number" id="priority-input" placeholder="Priority (1-∞)" min="1" required>
+        <button id="add-task">→</button>
+    </div>
+
+    <script>
+        const addTaskButton = document.getElementById('add-task');
+        const taskInput = document.getElementById('task-input');
+        const dateInput = document.getElementById('date-input');
+        const priorityInput = document.getElementById('priority-input');
+        const taskContainer = document.getElementById('task-container');
+
+        addTaskButton.addEventListener('click', () => {
+            const taskValue = taskInput.value.trim();
+            const dateValue = dateInput.value;
+            const priorityValue = priorityInput.value;
+
+            if (taskValue && dateValue && priorityValue) {
+                const taskItem = document.createElement('div');
+                taskItem.className = 'task-item';
+                taskItem.innerHTML = `
+                    <span>${taskValue} - Due: ${new Date(dateValue).toLocaleString()} - Priority: ${priorityValue}</span>
+                    <span onclick="removeTask(this)" style="cursor:pointer;">❌</span>
+                `;
+                taskContainer.appendChild(taskItem);
+                taskInput.value = '';
+                dateInput.value = '';
+                priorityInput.value = '';
+            }
+        });
+
+        function removeTask(element) {
+            const taskItem = element.parentElement;
+            taskContainer.removeChild(taskItem);
+        }
+
+// Load tasks from local storage
+const loadTasks = () => {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.forEach(task => addTaskToDOM(task));
+};
+
+// Save tasks to local storage
+const saveTasks = () => {
+    const tasks = [];
+    taskContainer.querySelectorAll('.task-item').forEach(item => {
+        const taskText = item.querySelector('span').textContent.split(' - ')[0];
+        const dueDate = item.querySelector('span').textContent.split(' - ')[1].replace('Due: ', '');
+        const priority = item.querySelector('span').textContent.split(' - ')[2].replace('Priority: ', '');
+        tasks.push({ taskText, dueDate, priority });
+    });
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+};
+
+// Add task to the DOM
+const addTaskToDOM = (task) => {
+    const taskItem = document.createElement('div');
+    taskItem.className = 'task-item';
+    taskItem.innerHTML = `
+        <span>${task.taskText} - Due: ${task.dueDate} - Priority: ${task.priority}</span>
+        <span onclick="removeTask(this)" style="cursor:pointer;">❌</span>
+    `;
+    taskContainer.appendChild(taskItem);
+};
+
+// Load tasks on page load
+loadTasks();
+
+    </script>
+</body>
+
+</html>
